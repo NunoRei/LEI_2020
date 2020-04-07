@@ -18,7 +18,7 @@ function queryObject(sql, bindParams, options) {
                   {
                     user          : "lei",
                     password      : "lei",
-                    connectString : "//127.0.0.1/orcl"
+                    connectString : "//127.0.0.1:1521/orcl"
                 })
         .then(function(connection){
             //console.log("sql log: " + sql + " params " + bindParams);
