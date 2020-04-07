@@ -4,6 +4,7 @@ const express = require('express'),
   port = process.env.PORT || 3000;
 
 
+var oracledb = require('./db.js');
 const mysql = require('mysql');
 // connection configurations
 const mc = mysql.createConnection({
@@ -14,7 +15,6 @@ const mc = mysql.createConnection({
 });
  
 // connect to database
-mc.connect();
 
 app.listen(port);
 
