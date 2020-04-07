@@ -12,6 +12,7 @@ const oracleDbRelease = function(conn) {
 
 function queryObject(sql, bindParams, options) {
     options['outFormat'] = oracledb.OBJECT;
+    options.isAutoCommit = true;
 
     return new Promise(function(resolve, reject) {
         oracledb.getConnection(
@@ -21,7 +22,7 @@ function queryObject(sql, bindParams, options) {
                     connectString : "//127.0.0.1:1521/orcl"
                 })
         .then(function(connection){
-            //console.log("sql log: " + sql + " params " + bindParams);
+            console.log("sql log: " + sql + " params " + bindParams);
             connection.execute(sql, bindParams, options)
             .then(function(results) {
                 resolve(results);
@@ -45,6 +46,10 @@ function queryObject(sql, bindParams, options) {
 
 Database.getMeds = () => {
     return queryObject("select * from prf_medicamentos where rxcui is not null", {}, {outFormat: ""});
+}
+
+Database.insertUtente = (nome,sexo,data,nUtente) => {
+    return queryObject("insert into utente (nome,n_utente,data_nascimento,sexo) values('"+nome+"',"+nUtente+",to_date('"+ data +"','yyyy/mm/dd'),'" + sexo+ "')", {}, {outFormat: ""});
 }
 
 module.exports.queryObject = queryObject;
