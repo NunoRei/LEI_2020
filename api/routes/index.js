@@ -39,7 +39,6 @@ router.post('/newUtente',(req,res)=>{
 router.post('/addMed',(req,res)=>{
   nUtente=req.body.nUtente
   med=req.body.med
-  console.log(med)
 
   receita.addMed(nUtente,med)
     .then(dados => {
@@ -53,7 +52,6 @@ router.post('/addMed',(req,res)=>{
 router.delete('/rmMed',(req,res)=>{
   nUtente=req.body.nUtente
   med=req.body.med
-  console.log(med)
 
   receita.rmMed(nUtente,med)
     .then(dados => {
@@ -64,8 +62,19 @@ router.delete('/rmMed',(req,res)=>{
     })
 })
 
-router.get('/interaction',(req,res)=>{
+router.delete('/resetRec',(req,res)=>{
+  nUtente=req.body.nUtente
 
+  receita.resetRec(nUtente)
+    .then(dados => {
+      res.jsonp(dados)
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
+router.get('/interaction',(req,res)=>{
   rxcuis = req.body.rxcuis
   str=''
 
@@ -75,8 +84,6 @@ router.get('/interaction',(req,res)=>{
     else
       str+=rxcuis[i].toString()+"+"
   }
-  s='https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str
-  console.log(s)
   axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
   .then(dados => {
     res.jsonp(dados.data)
