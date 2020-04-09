@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Database = require('../controllers/db');
 var medicamentos = require('../controllers/medicamento');
 var utentes = require('../controllers/utente');
 var receita = require('../controllers/receita');
@@ -13,6 +12,18 @@ router.get('/', function(req, res, next) {
 
 router.get('/meds',(req,res) =>{
   medicamentos.getMeds()
+    .then(dados => {
+      res.jsonp(dados.rows)
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
+router.get('/recUtente',(req,res) =>{
+  nUtente=req.body.nUtente;
+
+  receita.utenteRec(nUtente)
     .then(dados => {
       res.jsonp(dados.rows)
     })

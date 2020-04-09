@@ -13,3 +13,8 @@ module.exports.resetRec = (nUtente) => {
     return Database.
     queryObject("delete from receita where n_utente = :utente", {utente:nUtente}, {outFormat: ""});
 }
+
+module.exports.utenteRec = (nUtente) => {
+    return Database.
+    queryObject("select med from receita where n_utente= :utente", {utente:nUtente}, {outFormat: ""});
+}
