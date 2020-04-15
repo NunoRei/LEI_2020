@@ -3,7 +3,9 @@ import React from 'react';
 function Header() 
 {
     return (
-        <header className="topBar">This is the Header of the page</header>       
+        <div class="w3-card w3-grey w3-center" >
+            <h1>DRUGS</h1>
+        </div>      
     ) 
 }
 
