@@ -22,7 +22,12 @@ class Sidebar extends Component {
                 showNav        =  {this.state.showNav}
                 onHideNav      =  {() => this.setState({showNav: false})}
                 title          =  "Drug Interaction"
-                items          =  {['Home', 'Utente', 'Quem somos', 'Contactos',<a href='http://localhost:3100/'>Google</a>]}
+                items          =  {[
+                <a href='http://localhost:3000/'>Home</a>, 
+                <a href='http://localhost:3000/utente'>Utente</a>, 
+                <a href='http://localhost:3000/sobre'>About us</a>, 
+                'Contactos',
+                ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}
                 itemStyle      =  {{backgroundColor: '#fff'}}
                 itemHoverStyle =  {{backgroundColor: '#66c3e1'}}

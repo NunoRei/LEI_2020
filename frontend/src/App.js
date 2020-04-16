@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import {Switch, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Meds from './components/Meds';
-import Interactions from './components/Interactions'
+import Utente from './components/Utente'
+import Home from './components/Home'
+import Info from './components/Info'
 
 class App extends Component {
   
@@ -15,11 +18,14 @@ class App extends Component {
  
   render() {
       return (
-      <div>
+      <React.Fragment>
         <Header />
-        <Interactions />
-        <Footer />
-      </div>
+        <Switch>
+          <Route path="/utente" component={Utente} />
+          <Route path="/sobre" component={Info} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </React.Fragment>
     );
   }
 
