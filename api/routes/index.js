@@ -26,6 +26,17 @@ router.get('/meds',(req,res) =>{
     })
 })
 
+router.get('/utente', (req,res) =>{
+  nUtente = req.query.nUtente
+  utentes.infoUtente(nUtente)
+    .then(dados => {
+      res.json(dados.rows[0])
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
 router.get('/recUtente',(req,res) =>{
   nUtente=req.body.nUtente;
 
