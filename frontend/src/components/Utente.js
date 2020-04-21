@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Meds from './Meds';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 class Utente extends Component {
@@ -11,11 +13,10 @@ class Utente extends Component {
           Name: '',
           Sex: '',
           Birth: '',
-          Meds: []
         }
 
         this.handleChange = this.handleChange.bind(this)
-        this.handleOnSubmit = this.handleChange.bind(this)
+        //this.handleOnSubmit = this.handleChange.bind(this)
     }
 
     handleChange(event) 
@@ -27,13 +28,12 @@ class Utente extends Component {
       })
     }
 
-    handleOnSubmit(event) 
+    handleOnSubmit = () =>
     {
       let url = new URL('http://localhost:3100/utente')
       url.search = new URLSearchParams({
         nUtente: this.state.Number
       })
-
       fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -45,31 +45,46 @@ class Utente extends Component {
                     Birth: data.DATA_NASCIMENTO
                 })
             })
-
-      event.preventDefault();
     }
 
     render() 
     {
         return(
-          <div>
-            <div align="left">
-              <p>NUMBER: {this.state.Number} </p>
-              <p>NAME: {this.state.Name}</p>
-              <p>SEX: {this.state.Sex}</p>
-              <p>BIRTHDATE: {this.state.Birth}</p>
+          <div class="w3-padding-large">
+              <div display="inline">
+                    <input class="w3-input w3-round-large"
+                      type="text"
+                      value={this.state.Number}
+                      name="Number"
+                      placeholder="Patient number"
+                      onChange={this.handleChange}
+                    />
+              <button class="w3-btn" onClick={this.handleOnSubmit}><SearchIcon/></button> 
             </div>
-            <div align="center">
-              <form>
-                <input
-                  type="text"
-                  value={this.state.Number}
-                  name="Number"
-                  placeholder="Patient number"
-                  onChange={this.handleChange}
+            <div class="w3-container w3-panel w3-white w3-row-padding w3-border w3-round-large">
+              <div class="w3-col s1 w3-padding-16">
+                <img 
+                  src="https://lh3.googleusercontent.com/proxy/gkEV1XQcr92lbrN56vqNZvEvFs3OohPDzbkW6Ey9yRtG4ps5YK3SDdPEWCFWpR90RvJJ1j9iqLiH6P-V_HTkB_uYvDP2hRk6AUAMUFff0KR4DDnPmHkI3o4W8PRLYnGv7A"
+                  width="100" 
+                  height="110"
                 />
-                <button onClick={this.handleOnSubmit}>Search</button>
-              </form>
+              </div>
+                <div class="w3-col s1">
+                <p>Name: {this.state.Name}</p>
+                <p>Sex: {this.state.Sex}</p>
+                <p>Birth: {this.state.Birth}</p>
+              </div>
+            </div>
+            <div class="w3-container w3-row-padding">
+              <div class="w3-third w3-panel w3-white w3-border w3-round-large">
+                <h3>RECEITA</h3>
+              </div>
+              <div class="w3-third">
+                <Meds />
+              </div>
+              <div class="w3-third w3-panel w3-white w3-border w3-round-large">
+                <h3>INTERACOES</h3>
+              </div>
             </div>
           </div>
         );

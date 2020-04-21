@@ -18,7 +18,7 @@ class Sidebar extends Component {
     
     render() {
         return (
-            <div>
+            <div >
             <i onClick={() => this.setState({showNav: true})} class="fas fa-bars fa-4x w3-button w3-hover-blue w3-round-xlarge"> 
             </i>
             <SideNav
