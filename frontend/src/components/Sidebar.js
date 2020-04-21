@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
+import InfoIcon from '@material-ui/icons/Info';
 import SideNav from 'react-simple-sidenav';
 
 class Sidebar extends Component {
@@ -13,7 +14,7 @@ class Sidebar extends Component {
         }
     }
 
-    title = <h1>Drug interaction </h1>;
+    title = <h1>Menu</h1>;
     
     render() {
         return (
@@ -27,7 +28,7 @@ class Sidebar extends Component {
                 items          =  {[
                 <Link to="/"><HomeIcon />Home</Link>, 
                 <Link to="/utente"><PersonIcon />Utente</Link>, 
-                <Link to="/sobre">About us</Link>, 
+                <Link to="/sobre"><InfoIcon/>About us</Link>, 
                 'Contactos',
                 ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}

@@ -9,7 +9,7 @@ function Header()
                 <Sidebar/>
             </div>
             <div class="w3-col s9 w3-center">
-                <h1>Drugs</h1>
+                <h1>Drug Interaction</h1>
             </div>
       </div>
     ) 
