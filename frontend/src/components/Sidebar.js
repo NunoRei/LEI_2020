@@ -12,19 +12,18 @@ class Sidebar extends Component {
             showNav:false,
         }
     }
+
+    title = <h1>Drug interaction </h1>;
     
     render() {
         return (
             <div>
-            <i onClick={() => this.setState({showNav: true})} class="fas fa-bars fa-2x"> 
-                <h1 class="w3-center">
-                    DRUGS
-                </h1>
+            <i onClick={() => this.setState({showNav: true})} class="fas fa-bars fa-4x w3-button w3-hover-blue w3-round-xlarge"> 
             </i>
             <SideNav
                 showNav        =  {this.state.showNav}
                 onHideNav      =  {() => this.setState({showNav: false})}
-                title          =  "Drug Interaction"
+                title          = {this.title}
                 items          =  {[
                 <Link to="/"><HomeIcon />Home</Link>, 
                 <Link to="/utente"><PersonIcon />Utente</Link>, 
@@ -32,7 +31,7 @@ class Sidebar extends Component {
                 'Contactos',
                 ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}
-                itemStyle      =  {{backgroundColor: '#fff'}}
+                itemStyle      =  {{backgroundColor: ''}}
                 itemHoverStyle =  {{backgroundColor: '#66c3e1'}}
             />
             </div>
