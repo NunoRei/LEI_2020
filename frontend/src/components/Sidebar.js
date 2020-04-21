@@ -1,4 +1,7 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
 import SideNav from 'react-simple-sidenav';
 
 class Sidebar extends Component {
@@ -23,9 +26,9 @@ class Sidebar extends Component {
                 onHideNav      =  {() => this.setState({showNav: false})}
                 title          =  "Drug Interaction"
                 items          =  {[
-                <a href='http://localhost:3000/'>Home</a>, 
-                <a href='http://localhost:3000/utente'>Utente</a>, 
-                <a href='http://localhost:3000/sobre'>About us</a>, 
+                <Link to="/"><HomeIcon />Home</Link>, 
+                <Link to="/utente"><PersonIcon />Utente</Link>, 
+                <Link to="/sobre">About us</Link>, 
                 'Contactos',
                 ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}
