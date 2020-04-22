@@ -43,3 +43,12 @@ ul{
   margin: 0;
 }
 
+.w3-half{
+  background-color: lightblue;
+}
+
+.b-img{
+  background-image: url('b.jpg');
+  background-size:cover;
+  opacity: 0.8;
+}
