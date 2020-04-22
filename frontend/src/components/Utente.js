@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Meds from './Meds';
 import SearchIcon from '@material-ui/icons/Search';
+import Profilepic from '../profile.png';
 
 
 class Utente extends Component {
@@ -64,7 +65,8 @@ class Utente extends Component {
             <div class="w3-container w3-panel w3-white w3-row-padding w3-border w3-round-large">
               <div class="w3-col s1 w3-padding-16">
                 <img 
-                  src="https://lh3.googleusercontent.com/proxy/gkEV1XQcr92lbrN56vqNZvEvFs3OohPDzbkW6Ey9yRtG4ps5YK3SDdPEWCFWpR90RvJJ1j9iqLiH6P-V_HTkB_uYvDP2hRk6AUAMUFff0KR4DDnPmHkI3o4W8PRLYnGv7A"
+                  src={Profilepic}
+                  alt=""
                   width="100" 
                   height="110"
                 />
