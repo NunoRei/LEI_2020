@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Meds from './Meds';
-import SearchIcon from '@material-ui/icons/Search';
-
 
 class AddUtente extends Component {
     constructor() 
