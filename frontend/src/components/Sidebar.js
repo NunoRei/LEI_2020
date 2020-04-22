@@ -1,8 +1,5 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
-import InfoIcon from '@material-ui/icons/Info';
 import SideNav from 'react-simple-sidenav';
 import '../App'
 

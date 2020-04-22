@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Meds from './Meds';
-import SearchIcon from '@material-ui/icons/Search';
-
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class AddUtente extends Component {
     constructor() 
@@ -13,6 +12,7 @@ class AddUtente extends Component {
           Name: '',
           Sex: '',
           Birth: '',
+          redirect: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -42,19 +42,69 @@ class AddUtente extends Component {
     });
     */
 
-    handleOnSubmit = () =>
+    handleOnSubmit = (e) =>
     {
-      
+        e.preventDefault()
+        const data = {
+            nome: this.state.Name,
+            sexo: this.state.Sex,
+            data: this.state.Birth,
+            nUtente: this.state.Number
+        }
+        axios.post('http://localhost:3100/newUtente',data)
+        .then(data=>{
+            this.setState({redirect:true})
+        })
+        
     }
 
     render() 
     {
-        return (
-            <div >
-            <h3>This will be Add Utente Page</h3>
-            </div>
-        )
-    }   
+        const {redirect} = this.state
+        if(redirect){
+            return <Redirect to="/utente"/>
+        }else {
+            return (
+                <form onSubmit={this.handleOnSubmit}>
+                    <label>Nome</label>
+                    <input class="w3-input w3-round-large"
+                        type="text"
+                        value={this.state.Name}
+                        name="Name"
+                        placeholder="Nome do Utente"
+                        onChange={this.handleChange}
+                    />
+                    <label>Número do Utente</label>
+                    <input class="w3-input w3-round-large"
+                        type="text"
+                        value={this.state.Number}
+                        name="Number"
+                        placeholder="Número do Utente"
+                        onChange={this.handleChange}
+                    />
+                    <label>Data de nascimento do Utente</label>
+                    <input class="w3-input w3-round-large"
+                        type="date"
+                        value={this.state.Birth}
+                        name="Birth"
+                        placeholder=""
+                        onChange={this.handleChange}
+                    />
+                    <label>Género</label>
+                    <input class="w3-input w3-round-large"
+                        type="text"
+                        value={this.state.Sex}
+                        name="Sex"
+                        placeholder="Género do utente"
+                        onChange={this.handleChange}
+                    />
+                    <button onClick={this.handleOnSubmit} class="w3-button w3-white w3-border w3-border-blue w3-round-large w3-hover-light-blue">Adicionar Utente</button>
+                </form>
+            )
+        }
+        }
+
+           
 }
 
 export default AddUtente;
