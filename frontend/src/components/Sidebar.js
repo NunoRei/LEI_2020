@@ -4,6 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import InfoIcon from '@material-ui/icons/Info';
 import SideNav from 'react-simple-sidenav';
+import '../App'
 
 class Sidebar extends Component {
 
@@ -26,13 +27,14 @@ class Sidebar extends Component {
                 onHideNav      =  {() => this.setState({showNav: false})}
                 title          = {this.title}
                 items          =  {[
-                <Link to="/"><HomeIcon />Home</Link>, 
-                <Link to="/utente"><PersonIcon />Utente</Link>, 
-                <Link to="/sobre"><InfoIcon/>About us</Link>, 
+                <Link to="/" style={{ textDecoration: 'none' }}><i class="fa fa-home"/> Home</Link>, 
+                <Link to="/addUtente" style={{ textDecoration: 'none' }}><i class="fa fa-user-plus"/> Adicionar Utente</Link>, 
+                <Link to="/utente" style={{ textDecoration: 'none' }}><i class="fa fa-user"/> Utente</Link>,
+                <Link to="/sobre" style={{ textDecoration: 'none' }}><i class="fa fa-info-circle"/> About us</Link>, 
                 'Contactos',
                 ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}
-                itemStyle      =  {{backgroundColor: ''}}
+                itemStyle      =  {{backgroundColor: '#fff',cursor: 'pointer'}}
                 itemHoverStyle =  {{backgroundColor: '#66c3e1'}}
             />
             </div>
