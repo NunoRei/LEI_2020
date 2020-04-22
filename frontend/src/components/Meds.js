@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -39,11 +40,11 @@ class Meds extends Component {
         })
     }
 
-    async addMed(utente)
+    addMed(utente)
     {
         console.log(utente)
         console.log(this.state.selection)
-        
+        /*
         const postOptions = {
             method: 'POST',
             body: JSON.stringify({
@@ -57,6 +58,13 @@ class Meds extends Component {
             .then(data => {
                 console.log(data)
             })
+        */
+        axios.post('http://localhost:3100/addMed',{
+            nUtente: utente,
+            med: this.state.selection
+        }).then(data => {
+            console.log(data)
+        })
     }
       
     render() {

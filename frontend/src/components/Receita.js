@@ -17,35 +17,35 @@ class Receita extends Component {
         }
 
     }
-
+    
     render() 
     {
         return(
             <div>
                 <Paper elevation={1}>
-        <List>
-          {this.state.meds.map(med => 
-          {
-            return (
-              <ListItem 
-              key={med.CODIGO} 
-              role={undefined} 
-              dense 
-              button 
-              onClick={() => {}}>
+                    <List>
+            {this.props.value.map(med => 
+            {
+                return (
+                <ListItem 
+                    key={med.CODIGO} 
+                    role={undefined} 
+                    dense 
+                    button 
+                    onClick={() => {}}>
                 <ListItemText primary={med.DES_C} />
-                <ListItemSecondaryAction>
-                <IconButton onClick={() => this.removeMed(med)}>
-                  <CloseIcon />
-                </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-          );
-        }
+                    <ListItemSecondaryAction>
+                        <IconButton onClick={() => this.removeMed(med)}>
+                            <CloseIcon />
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+                );
+            }
         )}
       </List>
       </Paper>
-            </div>
+     </div>
         );
     }   
 }

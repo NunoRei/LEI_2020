@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Meds from './Meds';
+import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
 import Profilepic from '../profile.png';
 import Receita from '../components/Receita';
@@ -15,6 +16,7 @@ class Utente extends Component {
           Name: '',
           Sex: '',
           Birth: '',
+          meds: []
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -32,10 +34,12 @@ class Utente extends Component {
 
     handleOnSubmit()
     {
+      console.log(this.state.inputNumber)
       let url = new URL('http://localhost:3100/utente')
       url.search = new URLSearchParams({
         nUtente: this.state.inputNumber
       })
+
       fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -46,6 +50,20 @@ class Utente extends Component {
                     Birth: data.DATA_NASCIMENTO
                 })
             })
+
+      axios.get('http://localhost:3100/recUtente', 
+      {
+          nUtente: this.state.inputNumber
+      }
+      ).then(res => 
+        {
+          const meds = res.data
+          this.setState({
+            meds: meds
+          })
+          console.log(res.data)
+        })
+
     }
 
     render() 
@@ -80,7 +98,7 @@ class Utente extends Component {
             </div>
             <div class="w3-container w3-row-padding">
               <div class="w3-third w3-panel w3-white w3-border w3-round-large">
-                <Receita />
+                <Receita value={this.state.meds}/>
               </div>
               <div class="w3-third w3-center">
                 <Meds value={this.state.Number} />
