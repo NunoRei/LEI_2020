@@ -92,6 +92,7 @@ class Utente extends Component {
 
     removeMed(med) 
     {
+      
       axios.delete('http://localhost:3100/rmMed', {
         nUtente: this.state.Number,
         med: med.MED
@@ -99,6 +100,19 @@ class Utente extends Component {
       {mode: 'cors'}).then(x => {
         this.updatePrescription()
       })
+      /*
+      fetch("http://localhost:3100/rmMed", {
+         method: "DELETE", 
+         headers: { 
+           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }, 
+         body: JSON.stringify({
+           nUtente: this.state.Number,
+           med: med.MED
+          }) 
+        }).then(x => {
+          this.updatePrescription()
+        })*/
     }
 
     render() 

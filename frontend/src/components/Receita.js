@@ -26,7 +26,7 @@ class Receita extends Component {
             {
                 return (
                 <ListItem 
-                    key={med.MED} 
+                    key={med.RXCUI} 
                     role={undefined} 
                     dense 
                     button 
