@@ -96,8 +96,7 @@ class Utente extends Component {
       axios.delete('http://localhost:3100/rmMed', {
         nUtente: this.state.Number,
         med: med.MED
-      },
-      {mode: 'cors'}).then(x => {
+      }).then(x => {
         this.updatePrescription()
       })
       /*
