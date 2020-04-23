@@ -21,6 +21,9 @@ class Utente extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
+        this.updatePrescription = this.updatePrescription.bind(this)
+        this.addMed = this.addMed.bind(this)
+        this.removeMed = this.removeMed.bind(this)
     }
 
     handleChange(event) 
@@ -32,13 +35,32 @@ class Utente extends Component {
       })
     }
 
+    updatePrescription() 
+    {
+      let url = new URL('http://localhost:3100/recUtente')
+      url.search = new URLSearchParams({
+        nUtente: this.state.Number
+      })
+           
+      fetch(url)
+        .then(response  => response.json())
+        .then(data => {
+            console.log(data)
+            this.setState({
+              meds: data
+            })
+        })
+    }
+
     handleOnSubmit()
     {
-      console.log(this.state.inputNumber)
+
       let url = new URL('http://localhost:3100/utente')
       url.search = new URLSearchParams({
         nUtente: this.state.inputNumber
       })
+
+      console.log(url)
 
       fetch(url)
             .then(response => response.json())
@@ -49,21 +71,34 @@ class Utente extends Component {
                     Sex: data.SEXO,
                     Birth: data.DATA_NASCIMENTO
                 })
-            })
+                
+            }).then(z => {
+              this.updatePrescription()
+            })     
+    }
 
-      axios.get('http://localhost:3100/recUtente', 
-      {
-          nUtente: this.state.inputNumber
-      }
-      ).then(res => 
-        {
-          const meds = res.data
-          this.setState({
-            meds: meds
+    addMed(selection)
+    {
+        axios.post('http://localhost:3100/addMed',{
+            nUtente: this.state.Number,
+            med: selection
+        }).then(data => {
+            console.log(data)
+        }).then(x => 
+          {
+            this.updatePrescription()
           })
-          console.log(res.data)
-        })
+    }
 
+    removeMed(med) 
+    {
+      axios.delete('http://localhost:3100/rmMed', {
+        nUtente: this.state.Number,
+        med: med.MED
+      },
+      {mode: 'cors'}).then(x => {
+        this.updatePrescription()
+      })
     }
 
     render() 
@@ -98,10 +133,10 @@ class Utente extends Component {
             </div>
             <div class="w3-container w3-row-padding">
               <div class="w3-third w3-panel w3-white w3-border w3-round-large">
-                <Receita value={this.state.meds}/>
+                <Receita value={this.state.meds} onMedRemove={this.removeMed}/>
               </div>
               <div class="w3-third w3-center">
-                <Meds value={this.state.Number} />
+                <Meds onMedSubmit={this.addMed} />
               </div>
               <div class="w3-third w3-panel w3-white w3-border w3-round-large">
                 <h3>INTERACOES</h3>

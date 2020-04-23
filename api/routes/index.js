@@ -8,6 +8,7 @@ var axios = require('axios');
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Expose-Headers", "Location");
   next();
 });
 
@@ -28,6 +29,7 @@ router.get('/meds',(req,res) =>{
 
 router.get('/utente', (req,res) =>{
   nUtente = req.query.nUtente
+
   utentes.infoUtente(nUtente)
     .then(dados => {
       res.json(dados.rows[0])
@@ -38,7 +40,7 @@ router.get('/utente', (req,res) =>{
 })
 
 router.get('/recUtente',(req,res) =>{
-  nUtente=req.body.nUtente;
+  nUtente=req.query.nUtente;
 
   receita.utenteRec(nUtente)
     .then(dados => {

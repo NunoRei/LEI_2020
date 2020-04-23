@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -11,7 +10,6 @@ class Meds extends Component {
             selection: ""
         }
         
-        this.addMed = this.addMed.bind(this)
         this.updateSelection = this.updateSelection.bind(this)
 
     }
@@ -39,33 +37,6 @@ class Meds extends Component {
             selection: cod
         })
     }
-
-    addMed(utente)
-    {
-        console.log(utente)
-        console.log(this.state.selection)
-        /*
-        const postOptions = {
-            method: 'POST',
-            body: JSON.stringify({
-                nUtente: utente,
-                med: this.state.selection
-            })
-        }
-        
-        fetch('http://localhost:3100/addMed', postOptions)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
-        */
-        axios.post('http://localhost:3100/addMed',{
-            nUtente: utente,
-            med: this.state.selection
-        }).then(data => {
-            console.log(data)
-        })
-    }
       
     render() {
 
@@ -82,7 +53,7 @@ class Meds extends Component {
                 <div class="w3-padding-large">
                 <button 
                 class="w3-button w3-pale-green w3-border w3-border-teal w3-hover-teal w3-round-large" 
-                onClick={() => this.addMed(this.props.value)}
+                onClick={() => this.props.onMedSubmit(this.state.selection)}
                 >
                   <b>Add to Prescription</b>
                 </button>

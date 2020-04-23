@@ -16,5 +16,5 @@ module.exports.resetRec = (nUtente) => {
 
 module.exports.utenteRec = (nUtente) => {
     return Database.
-    queryObject("select med from receita where n_utente= :utente", {utente:nUtente}, {outFormat: ""});
+    queryObject("select receita.med, prf_medicamentos.DESC_C, prf_medicamentos.RXCUI from receita inner join prf_medicamentos ON receita.med = prf_medicamentos.codigo where receita.n_utente= :utente", {utente:nUtente}, {outFormat: ""});
 }

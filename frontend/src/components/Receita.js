@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -22,20 +21,19 @@ class Receita extends Component {
     {
         return(
             <div>
-                <Paper elevation={1}>
                     <List>
             {this.props.value.map(med => 
             {
                 return (
                 <ListItem 
-                    key={med.CODIGO} 
+                    key={med.MED} 
                     role={undefined} 
                     dense 
                     button 
                     onClick={() => {}}>
-                <ListItemText primary={med.DES_C} />
+                <ListItemText primary={med.DESC_C} />
                     <ListItemSecondaryAction>
-                        <IconButton onClick={() => this.removeMed(med)}>
+                        <IconButton onClick={() => this.props.onMedRemove(med)}>
                             <CloseIcon />
                         </IconButton>
                     </ListItemSecondaryAction>
@@ -44,7 +42,6 @@ class Receita extends Component {
             }
         )}
       </List>
-      </Paper>
      </div>
         );
     }   
