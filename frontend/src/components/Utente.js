@@ -60,7 +60,7 @@ class Utente extends Component {
         nUtente: this.state.inputNumber
       })
 
-      console.log(url)
+      //console.log(url)
 
       fetch(url)
             .then(response => response.json())
@@ -90,16 +90,37 @@ class Utente extends Component {
           })
     }
 
-    removeMed(med) 
+    removeMed(med,e) 
     {
+        const data = {
+          med:med.MED,
+          nUtente: this.state.Number
+      }
+      console.log(data)
+
+
       
-      axios.delete('http://localhost:3100/rmMed', {
-        nUtente: this.state.Number,
-        med: med.MED
+      axios.request({
+        method: 'DELETE',
+        url: `http://localhost:3100/rmMed`,
+        data: {
+          med:med.MED,
+          nUtente: this.state.Number
+        },
+      
       }).then(x => {
+        console.log(x)
+        console.log(this.state.Number)
         this.updatePrescription()
-      })
+    })
       /*
+      axios.delete('http://localhost:3100/rmMed' ,data)
+        .then(x => {
+          console.log(x)
+          console.log(this.state.Number)
+          this.updatePrescription()
+      })
+      
       fetch("http://localhost:3100/rmMed", {
          method: "DELETE", 
          headers: { 
