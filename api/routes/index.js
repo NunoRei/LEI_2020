@@ -108,19 +108,21 @@ router.get('/interaction',(req,res)=>{
   rxcuis = req.body.rxcuis
   str=''
 
-  for(i=0;i<rxcuis.length;i++){
-    if(i==rxcuis.length-1)
-      str+=rxcuis[i].toString()
-    else
-      str+=rxcuis[i].toString()+"+"
+  for(i=0;i<rxcuis.length;i++)
+  {
+      if(i==rxcuis.length-1)
+        str+=rxcuis[i].toString()
+      else
+        str+=rxcuis[i].toString()+"+"
   }
+
   axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
-  .then(dados => {
-    res.jsonp(dados.data)
-  })
-  .catch(erro => {
-    res.jsonp(erro)
-  })
+    .then(dados => {
+      res.jsonp(dados.data)
+    })
+      .catch(erro => {
+        res.jsonp(erro)
+      })
 })
 
 module.exports = router;

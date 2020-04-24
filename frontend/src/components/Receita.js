@@ -5,6 +5,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Paper from '@material-ui/core/Paper';
 
 class Receita extends Component {
     constructor() 
@@ -21,7 +22,9 @@ class Receita extends Component {
     {
         return(
             <div>
-                    <List>
+            <Paper elevation={3}>
+            <h3 class="w3-center">Prescription</h3>
+            <List>
             {this.props.value.map(med => 
             {
                 return (
@@ -42,6 +45,7 @@ class Receita extends Component {
             }
         )}
       </List>
+      </Paper>
      </div>
         );
     }   

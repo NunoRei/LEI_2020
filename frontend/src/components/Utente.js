@@ -4,6 +4,7 @@ import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
 import Profilepic from '../profile.png';
 import Receita from '../components/Receita';
+import Interactions from '../components/Interactions';
 
 class Utente extends Component {
     constructor(props) 
@@ -16,12 +17,14 @@ class Utente extends Component {
           Name: '',
           Sex: '',
           Birth: '',
-          meds: []
+          meds: [],
+          interactions: []
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleOnSubmit = this.handleOnSubmit.bind(this)
         this.updatePrescription = this.updatePrescription.bind(this)
+        this.updateInteractions =this.updateInteractions.bind(this)
         this.addMed = this.addMed.bind(this)
         this.removeMed = this.removeMed.bind(this)
     }
@@ -49,7 +52,7 @@ class Utente extends Component {
             this.setState({
               meds: data
             })
-        })
+        }).then(y => this.updateInteractions())
     }
 
     handleOnSubmit()
@@ -59,8 +62,6 @@ class Utente extends Component {
       url.search = new URLSearchParams({
         nUtente: this.state.inputNumber
       })
-
-      //console.log(url)
 
       fetch(url)
             .then(response => response.json())
@@ -74,7 +75,7 @@ class Utente extends Component {
                 
             }).then(z => {
               this.updatePrescription()
-            })     
+            })  
     }
 
     addMed(selection)
@@ -87,51 +88,48 @@ class Utente extends Component {
         }).then(x => 
           {
             this.updatePrescription()
-          })
+          }).then(y => this.updateInteractions())
     }
 
     removeMed(med,e) 
     {
-        const data = {
-          med:med.MED,
-          nUtente: this.state.Number
-      }
-      console.log(data)
-
-
-      
       axios.request({
         method: 'DELETE',
         url: `http://localhost:3100/rmMed`,
         data: {
           med:med.MED,
           nUtente: this.state.Number
-        },
-      
+        }
       }).then(x => {
-        console.log(x)
-        console.log(this.state.Number)
-        this.updatePrescription()
-    })
-      /*
-      axios.delete('http://localhost:3100/rmMed' ,data)
-        .then(x => {
-          console.log(x)
-          console.log(this.state.Number)
           this.updatePrescription()
-      })
-      
-      fetch("http://localhost:3100/rmMed", {
-         method: 'delete',
-         body: JSON.stringify({
-           nUtente: this.state.Number,
-           med: med.MED
-          }) 
-        }).then(response => console.log(response))
-        .then(x => {
-          this.updatePrescription()
-        })*/
+      }).then(y => this.updateInteractions())
     }
+
+    updateInteractions() {
+
+          var str = "";
+          var i;
+
+          const rxcuis = this.state.meds.map(med => med.RXCUI)
+
+          for(i=0;i<rxcuis.length;i++)
+          {    
+              if(i===rxcuis.length-1)
+                  str+=rxcuis[i].toString()
+              else
+                  str+=rxcuis[i].toString()+"+"
+          }
+
+          console.log(str)
+
+          axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
+              .then(dados => {
+                  console.log(dados.data.fullInteractionTypeGroup[0].fullInteractionType)
+                  this.setState({
+                      interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType
+                  })
+          })
+  }
 
     render() 
     {
@@ -164,14 +162,14 @@ class Utente extends Component {
               </div>
             </div>
             <div class="w3-container w3-row-padding">
-              <div class="w3-third w3-panel w3-white w3-border w3-round-large">
+              <div class="w3-third">
                 <Receita value={this.state.meds} onMedRemove={this.removeMed}/>
               </div>
               <div class="w3-third w3-center">
                 <Meds onMedSubmit={this.addMed} />
               </div>
-              <div class="w3-third w3-panel w3-white w3-border w3-round-large">
-                <h3>INTERACOES</h3>
+              <div class="w3-third">
+                <Interactions value={this.state.interactions}/>
               </div>
             </div>
           </div>
