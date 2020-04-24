@@ -92,24 +92,26 @@ class Utente extends Component {
 
     removeMed(med) 
     {
-      
+      console.log(this.state.Number)
+      console.log(med.MED)
       axios.delete('http://localhost:3100/rmMed', {
         nUtente: this.state.Number,
         med: med.MED
-      }).then(x => {
+      }).then(response => 
+        console.log(response)
+      )
+      .then(x => {
         this.updatePrescription()
       })
       /*
       fetch("http://localhost:3100/rmMed", {
-         method: "DELETE", 
-         headers: { 
-           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        }, 
+         method: 'delete',
          body: JSON.stringify({
            nUtente: this.state.Number,
            med: med.MED
           }) 
-        }).then(x => {
+        }).then(response => console.log(response))
+        .then(x => {
           this.updatePrescription()
         })*/
     }
