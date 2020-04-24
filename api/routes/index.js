@@ -83,7 +83,6 @@ router.post('/addMed',(req,res)=>{
 router.delete('/rmMed',(req,res)=>{
   nUtente=req.body.nUtente
   med=req.body.med
-
   receita.rmMed(nUtente,med)
     .then(dados => {
       res.jsonp(dados)

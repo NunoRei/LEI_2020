@@ -6,7 +6,7 @@ module.exports.addMed = (nUtente,med) => {
 
 module.exports.rmMed = (nUtente,med) => {
     return Database.
-    queryObject("delete from receita where n_utente = :utente and med = :med", {utente:nUtente, med:med}, {outFormat: ""});
+    queryObject("delete from receita where n_utente =" +nUtente+ " and med ='"+med+"'", {}, {outFormat: ""});
 }
 
 module.exports.resetRec = (nUtente) => {
