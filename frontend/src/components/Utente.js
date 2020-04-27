@@ -126,10 +126,17 @@ class Utente extends Component {
 
           axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
               .then(dados => {
+
+                try {
                   console.log(dados.data.fullInteractionTypeGroup[0].fullInteractionType)
                   this.setState({
                       interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType
                   })
+
+                } catch (error) {
+                  console.log(error)
+                }
+
           })
       }
       else {

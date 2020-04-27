@@ -38,7 +38,6 @@ class Interactions extends Component {
 
             axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
                 .then(dados => {
-                    console.log(dados.data)
                     this.setState({
                         interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType[0].interactionPair
                     })
