@@ -107,6 +107,8 @@ class Utente extends Component {
 
     updateInteractions() {
 
+      if (this.state.meds.length > 1) 
+      {
           var str = "";
           var i;
 
@@ -129,6 +131,12 @@ class Utente extends Component {
                       interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType
                   })
           })
+      }
+      else {
+        this.setState({
+          interactions: []
+        })
+      }
   }
 
     render() 
