@@ -128,9 +128,8 @@ class Utente extends Component {
               .then(dados => {
 
                 try {
-                  console.log(dados.data.fullInteractionTypeGroup[0].fullInteractionType)
                   this.setState({
-                      interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType
+                      interactions: dados.data.fullInteractionTypeGroup[1].fullInteractionType
                   })
 
                 } catch (error) {

@@ -4,6 +4,8 @@ import axios from 'axios';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import WarningIcon from '@material-ui/icons/Warning';
+import { ListItemIcon } from '@material-ui/core';
 
 
 class Interactions extends Component {
@@ -12,41 +14,16 @@ class Interactions extends Component {
         super()
         
             this.state = {
-                interactions: []
+                interactions: [],
+                interactions2: []
         }
 
     }
 
-    getInteractions(meds) {
-
-        if (Array.isArray(meds) && meds.length) 
-        {
-            var str = "";
-            var i;
-
-            const rxcuis = meds.map(med => med.RXCUI)
-
-            for(i=0;i<rxcuis.length;i++)
-            {    
-                if(i===rxcuis.length-1)
-                    str+=rxcuis[i].toString()
-                else
-                    str+=rxcuis[i].toString()+"+"
-            }
-
-            console.log(str)
-
-            axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
-                .then(dados => {
-                    this.setState({
-                        interactions: dados.data.fullInteractionTypeGroup[0].fullInteractionType[0].interactionPair
-                    })
-            })
-        }
-    }
 
     render() 
     {
+
         return(
             <div>
                 <Paper elevation={3}>
@@ -59,6 +36,11 @@ class Interactions extends Component {
                                     <ListItemText
                                          primary={inter.interactionPair[0].description}
                                     />
+                                    {
+                                        inter.interactionPair[0].severity === "high" &&
+                                        <ListItemIcon><WarningIcon/></ListItemIcon>
+
+                                    }
                                 </ListItem>
                             );
                         }
