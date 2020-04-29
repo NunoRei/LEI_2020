@@ -20,18 +20,6 @@ class Interactions extends Component {
 
     }
 
-
-    /*orderInt(inters) 
-    {
-        var highSev = [] 
-
-        inters.map(inter => {
-            if (inter.interactionPair[0].severity == "high")
-                inters.remove(inter)
-                highSev.push(inter)
-        })
-    }*/
-
     render() 
     {
 
