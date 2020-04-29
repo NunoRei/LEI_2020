@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import WarningIcon from '@material-ui/icons/Warning';
 import { ListItemIcon } from '@material-ui/core';
-
 
 class Interactions extends Component {
     constructor() 
@@ -32,13 +30,15 @@ class Interactions extends Component {
                         {this.props.value.map(inter => 
                             {
                                 return (
-                                <ListItem>
+                                <ListItem alignItems="flex-start">
                                     <ListItemText
                                          primary={inter.interactionPair[0].description}
                                     />
                                     {
                                         inter.interactionPair[0].severity === "high" &&
-                                        <ListItemIcon><WarningIcon/></ListItemIcon>
+                                        <ListItemIcon>
+                                            <WarningIcon/>
+                                        </ListItemIcon>
 
                                     }
                                 </ListItem>

@@ -127,9 +127,21 @@ class Utente extends Component {
           axios.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis='+str)
               .then(dados => {
 
+                  var oncHIGH = []
+
                 try {
+                    oncHIGH = dados.data.fullInteractionTypeGroup[1].fullInteractionType
+                }
+                catch (error) {
+                  console.log(error)
+                }
+
+                try {
+
+                  const drugbank = dados.data.fullInteractionTypeGroup[0].fullInteractionType
+          
                   this.setState({
-                      interactions: dados.data.fullInteractionTypeGroup[1].fullInteractionType
+                      interactions: drugbank.concat(oncHIGH)
                   })
 
                 } catch (error) {
@@ -183,7 +195,7 @@ class Utente extends Component {
                 <Meds onMedSubmit={this.addMed} />
               </div>
               <div class="w3-third">
-                <Interactions value={this.state.interactions}/>
+                <Interactions value={this.state.interactions} />
               </div>
             </div>
           </div>
