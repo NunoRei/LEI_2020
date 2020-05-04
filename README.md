@@ -7,3 +7,7 @@ Projeto LEI sobre interações medicamentosas
 - Fábio Carvalho Senra A82108
 - Nuno Rei A81918
 - Rafaela Pinho PG
+
+Melhorias:
+
+- [x] Teste
