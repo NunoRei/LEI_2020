@@ -5,7 +5,7 @@ class Info extends Component
     render () {
         return(
         <div>
-            <h3>This is the About us page</h3>
+            <h3>Quem somos</h3>
         </div>
         );
     }

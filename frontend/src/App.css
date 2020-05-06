@@ -48,7 +48,36 @@ ul{
 }
 
 .b-img{
-  background-image: url('b.jpg');
+  /* background-image: url('b.jpg');  */
   background-size:cover;
   opacity: 0.8;
+}
+.header {
+  overflow: auto;
+  background-color: lightblue;
+  width: 100%;
+  padding: 10px 10px;
+  /* background-position: center center; */
+  /* background-size: cover;
+  min-height: 100vh;
+  max-height: 999px;
+  overflow: hidden;
+  position: relative; */
+  /* z-index: 1; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;  */
+}
+
+.footer {
+  overflow: auto;
+  background-color: lightblue;
+  padding: 10px 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 5px;
+  width: 100%;
+  color: black;
+  text-align: center;
 }

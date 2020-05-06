@@ -1,9 +1,14 @@
 import React from 'react';
 
+
+
 function Footer() 
 {
     return (
-        <footer className="bottomBar">This is the Footer of the page</footer>       
+        <div class= "footer">
+            <p>Copyright © 2020 | Drug Interaction</p>
+        </div>
+       
     ) 
 }
 

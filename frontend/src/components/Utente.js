@@ -161,16 +161,17 @@ class Utente extends Component {
     {
         return(
           <div class="w3-padding-large">
-              <div display="inline">
-                    <input class="w3-input w3-round-large"
+          
+                    <input class="w3-input w3-border w3-hover-gray w3-round-large " style={{width: '30%'}}
                       type="text"
                       value={this.state.inputNumber}
                       name="inputNumber"
                       placeholder="Patient number"
                       onChange={this.handleChange}
                     />
-              <button class="w3-btn" onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
-            </div>
+                    <button class="w3-btn  w3-round"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
+                    
+            
             <div class="w3-container w3-panel w3-white w3-row-padding w3-border w3-round-large">
               <div class="w3-col s1 w3-padding-16">
                 <img 

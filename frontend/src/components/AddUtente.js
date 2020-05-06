@@ -68,9 +68,9 @@ class AddUtente extends Component {
 
                 <div class="w3-row">
                     <div class="w3-quarter " > <br/></div>
-                    <div class="w3-half " >
+                    <div class="w3-half w3-margin" >
                         
-                        <form class="w3-padding w3-card" onSubmit={this.handleOnSubmit} >
+                        <form class="w3-padding w3-card"  onSubmit={this.handleOnSubmit} >
                             <h2 class="w3-center">Novo Utente</h2>
                             <br></br>
                             <label class="w3-text-black">Nome</label>

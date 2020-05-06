@@ -7,6 +7,7 @@ import Utente from './components/Utente'
 import Home from './components/Home'
 import Info from './components/Info'
 import AddUtente from './components/AddUtente'
+import Footer  from './components/Footer'
 
 class App extends Component {
   
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/receita" component={Receita} />
           <Route path="/" component={Home} />
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }
