@@ -67,8 +67,8 @@ class AddUtente extends Component {
             return (
 
                 <div class="w3-row">
-                    <div class="w3-quarter " > <br/></div>
-                    <div class="w3-half w3-margin" >
+                    <div class="w3-quarter" > <br/></div>
+                    <div class=" w3-margin" style = {{backgroundColor: 'rgba(173,216,230, 0.2)'}}  >
                         
                         <form class="w3-padding w3-card"  onSubmit={this.handleOnSubmit} >
                             <h2 class="w3-center">Novo Utente</h2>
@@ -105,7 +105,9 @@ class AddUtente extends Component {
                                 placeholder="Género do utente"
                                 onChange={this.handleChange}
                             />
-                            <button onClick={this.handleOnSubmit} class="w3-button w3-white w3-border w3-border-blue w3-round-large w3-hover-blue">Adicionar Utente</button>
+                            <div style={{paddingTop: '10px'}}>
+                            <button onClick={this.handleOnSubmit} class="w3-button w3-white w3-border w3-border-blue w3-round-large w3-hover-blue ">Adicionar Utente</button>
+                            </div>
                         </form>
                     </div>
                     <div class="w3-quarter" ></div>

@@ -44,20 +44,31 @@ ul{
 }
 
 .w3-half{
-  background-color: lightblue;
+  background-color: 'rgba(173,216,230, 0.2)';
+}
+.w3-lobster {
+  font-family: "Lobster", serif;
+}
+
+.ul {
+  list-style-type: square;
+  padding-left: 20px;
 }
 
 .b-img{
-  /* background-image: url('b.jpg');  */
+  /* background-image: url('./img/drug2.png');  */
   background-size:cover;
-  opacity: 0.8;
+  background-color: rgb(255, 255, 255);
+  opacity: 1;
 }
 .header {
   overflow: auto;
+  background-image: url('./img/med.jpg');
+  background-size: cover;
   background-color: lightblue;
   width: 100%;
   padding: 10px 10px;
-  /* background-position: center center; */
+
   /* background-size: cover;
   min-height: 100vh;
   max-height: 999px;
@@ -71,9 +82,8 @@ ul{
 
 .footer {
   overflow: auto;
-  background-color: lightblue;
-  padding: 10px 10px;
-  position: fixed;
+  background: rgba(173,216,230, 0.2);
+  position: relative;
   left: 0;
   bottom: 0;
   padding: 5px;

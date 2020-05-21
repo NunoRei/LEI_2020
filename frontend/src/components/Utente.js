@@ -181,7 +181,7 @@ class Utente extends Component {
                   height="110"
                 />
               </div>
-                <div class="w3-col s1">
+                <div class="w3-col s3 " style = {{paddingLeft: '50px'}} >
                 <p><b>Number: </b>{this.state.Number}</p>
                 <p><b>Name: </b>{this.state.Name}</p>
                 <p><b>Sex: </b>{this.state.Sex}</p>
