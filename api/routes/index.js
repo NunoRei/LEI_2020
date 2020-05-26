@@ -53,12 +53,48 @@ router.get('/recUtente',(req,res) =>{
 })
 
 router.post('/newUtente',(req,res)=>{
+
   nome=req.body.nome
-  nUtente=req.body.nUtente
   sexo=req.body.sexo
   data=req.body.data
+  nUtente=req.body.nUtente
+  cc_id=req.body.cc_id
+  sns=req.body.sns
+  morada=req.body.morada
+  codigo_postal=req.body.codigo_postal
+  localidade=req.body.localidade
+  telemovel=req.body.telemovel
+  email=req.body.email
+  obs=req.body.obs
+
   
-  utentes.insertUtente(nome,sexo,data,nUtente)
+  utentes.insertUtente(nome,sexo,data,nUtente,cc_id,sns,morada,
+    codigo_postal,localidade,telemovel,email,obs)
+    .then(dados => {
+      res.jsonp(dados)
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
+router.put('/updateUtente',async (req,res, next)=>{
+
+  nome=req.body.nome
+  sexo=req.body.sexo
+  data=req.body.data
+  nUtente=req.body.nUtente
+  cc_id=req.body.cc_id
+  sns=req.body.sns
+  morada=req.body.morada
+  codigo_postal=req.body.codigo_postal
+  localidade=req.body.localidade
+  telemovel=req.body.telemovel
+  email=req.body.email
+  obs=req.body.obs
+
+  await utentes.updateUtente(nome,sexo,data,nUtente,cc_id,sns,morada,
+    codigo_postal,localidade,telemovel,email,obs)
     .then(dados => {
       res.jsonp(dados)
     })
