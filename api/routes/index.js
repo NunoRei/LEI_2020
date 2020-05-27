@@ -78,7 +78,7 @@ router.post('/newUtente',(req,res)=>{
     })
 })
 
-router.put('/updateUtente',async (req,res, next)=>{
+router.put('/updateUtente', (req,res)=>{
 
   nome=req.body.nome
   sexo=req.body.sexo
@@ -93,10 +93,10 @@ router.put('/updateUtente',async (req,res, next)=>{
   email=req.body.email
   obs=req.body.obs
 
-  await utentes.updateUtente(nome,sexo,data,nUtente,cc_id,sns,morada,
+  utentes.updateUtente(nome,sexo,data,nUtente,cc_id,sns,morada,
     codigo_postal,localidade,telemovel,email,obs)
     .then(dados => {
-      res.jsonp(dados)
+      res.end(JSON.stringify(dados));
     })
     .catch(erro => {
       res.jsonp(erro)
