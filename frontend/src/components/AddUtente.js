@@ -12,6 +12,14 @@ class AddUtente extends Component {
           Name: '',
           Sex: '',
           Birth: '',
+          CC_id: '',
+          SNS: '',
+          Address: '',
+          PostalCode: '',
+          Localidade: '',
+          PhoneNumber: '',
+          Email: '',
+          OBS: '',
           redirect: false
         }
 
@@ -49,7 +57,15 @@ class AddUtente extends Component {
             nome: this.state.Name,
             sexo: this.state.Sex,
             data: this.state.Birth,
-            nUtente: this.state.Number
+            nUtente: this.state.Number,
+            cc_id: this.state.CC_id,
+            sns: this.state.SNS,
+            morada: this.state.Address,
+            codigo_postal: this.state.PostalCode,
+            localidade: this.state.Localidade,
+            telemovel: this.state.PhoneNumber,
+            email: this.state.Email,
+            obs: this.state.OBS
         }
         axios.post('http://localhost:3100/newUtente',data)
         .then(data=>{
@@ -103,6 +119,70 @@ class AddUtente extends Component {
                                 value={this.state.Sex}
                                 name="Sex"
                                 placeholder="Género do utente"
+                                onChange={this.handleChange}
+                            />
+                            <label>Cartao de Cidadao</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.CC_id}
+                                name="CC_id"
+                                placeholder="Cartao de Cidadao"
+                                onChange={this.handleChange}
+                            />
+                            <label>Numero do Servico Nacional de Saude</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.SNS}
+                                name="SNS"
+                                placeholder="Numero"
+                                onChange={this.handleChange}
+                            />
+                            <label>Morada</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.Address}
+                                name="Address"
+                                placeholder="Morada"
+                                onChange={this.handleChange}
+                            />
+                            <label>Codigo Postal</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.PostalCode}
+                                name="PostalCode"
+                                placeholder="Codigo de Postal"
+                                onChange={this.handleChange}
+                            />
+                            <label>Localidade</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.Localidade}
+                                name="Localidade"
+                                placeholder="Localidade"
+                                onChange={this.handleChange}
+                            />
+                            <label>Telemovel</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.PhoneNumber}
+                                name="PhoneNumber"
+                                placeholder="Telemovel"
+                                onChange={this.handleChange}
+                            />
+                            <label>Email</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.Email}
+                                name="Email"
+                                placeholder="Email"
+                                onChange={this.handleChange}
+                            />
+                            <label>Observacoes</label>
+                            <input class="w3-input w3-round-large"
+                                type="text"
+                                value={this.state.OBS}
+                                name="OBS"
+                                placeholder="Observacoes"
                                 onChange={this.handleChange}
                             />
                             <div style={{paddingTop: '10px'}}>

@@ -58,8 +58,7 @@ ul{
 .b-img{
   /* background-image: url('./img/drug2.png');  */
   background-size:cover;
-  background-color: rgb(255, 255, 255);
-  opacity: 1;
+  background-color: #ffffff;
 }
 .header {
   overflow: auto;
