@@ -1,5 +1,4 @@
 import React from 'react';
-import { colors } from '@material-ui/core';
 
 
 function Home() 

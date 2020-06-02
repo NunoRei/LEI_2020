@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Meds from './Meds';
 import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
-import Profilepic from '../profile.png';
 import Receita from '../components/Receita';
+import UtenteInfo from '../components/UtenteInfo'
 import Interactions from '../components/Interactions';
+import Alert from '@material-ui/lab/Alert';
 
 class Utente extends Component {
     constructor(props) 
@@ -31,7 +31,8 @@ class Utente extends Component {
           local_number: '',
           meds: [],
           interactions: [],
-          notLoaded: true
+          notLoaded: true,
+          caughtError: false,
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -97,11 +98,16 @@ class Utente extends Component {
                       local_number: data.LOCAL_SEQ_NUMBER,
                       data_atualizacao: data.DATA_ATUALIZACAO,
                       data_insercao: data.DATA_INSERCAO,
-                      notLoaded: false
+                      notLoaded: false,
+                      caughtError: false
                   })
                   
               }).then(z => {
                 this.updatePrescription()
+              }).catch(error => {
+                this.setState({
+                    caughtError: true
+                })
               })
       }  
     }
@@ -184,104 +190,84 @@ class Utente extends Component {
         })
       }
   }
-
-    render() 
+  render() 
     {   
-        if (this.state.notLoaded) {
-          return(
-            <div class="w3-padding-large">
+      if (this.state.caughtError) {
+        return(
+          <div class="w3-padding-large">
             <div class="w3-container w3-row w3-content">
                       
-                      <input class="w3-large w3-center w3-round w3-sand" style={{width: '93%'}}
+                      <input 
+                        class="w3-large w3-center" 
+                        style={{width: '93%'}}
                         type="text"
                         value={this.state.inputNumber}
                         name="inputNumber"
                         placeholder="Patient Number"
                         onChange={this.handleChange}
                       />
-                      <button class="w3-btn  w3-round-xxlarge w3-no-hover"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
+                      <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
+            </div>
+            <Alert severity="error">
+                      No Patient found with that Number — <strong>Register it!</strong>
+            </Alert>      
+          </div>
+        );
+      }
+      else if (this.state.notLoaded) {
+          return(
+            <div class="w3-padding-large">
+            <div class="w3-container w3-row w3-content">
+                      
+                      <input class="w3-large w3-center" style={{width: '93%'}}
+                        type="text"
+                        value={this.state.inputNumber}
+                        name="inputNumber"
+                        placeholder="Patient Number"
+                        onChange={this.handleChange}
+                      />
+                      <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
             </div>
             </div>
           ); 
         }
         else {
           return(
-            <div class="w3-padding-large">
-            <div class="w3-container w3-row w3-content">
-                      
-                      <input class="w3-large w3-center w3-round w3-sand" style={{width: '93%'}}
-                        type="text"
-                        value={this.state.inputNumber}
-                        name="inputNumber"
-                        placeholder="Patient Number"
-                        onChange={this.handleChange}
-                      />
-                      <button class="w3-btn  w3-round-xxlarge"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
+            <div class="w3-container w3-content">
+
+              <div>
+                <UtenteInfo 
+                  local_number={this.state.local_number}
+                  number={this.state.Number}
+                  name={this.state.Name}
+                  sex={this.state.Sex}
+                  birth={this.state.Birth}
+                  cc_id={this.state.CC_id}
+                  SNS={this.state.SNS}
+                  address={this.state.Address}
+                  postalCode={this.state.PostalCode}
+                  locality={this.state.Localidade}
+                  phone={this.state.PhoneNumber}
+                  email={this.state.Email}
+                  updateDate={this.state.data_atualizacao}
+                  insertDate={this.state.data_insercao}
+                  obs={this.state.OBS}
+                />
+              </div>
+               
+              <div>
+                <Receita value={this.state.meds} onMedRemove={this.removeMed} onMedSubmit={this.addMed}/>
+              </div>
+
+              <div>
+                <Interactions value={this.state.interactions} />
+              </div>
+
             </div>
-              <div class="w3-container w3-card w3-sand w3-content">
-                <p><b>Patient Information</b></p>
-                <div class="w3-col s1 w3-padding-16">
-                  <img 
-                    src={Profilepic}
-                    alt=""
-                    width="100" 
-                    height="110"
-                    class="w3-circle"
-                  />
-                </div>
-                  
-                  <div class="w3-col s3 " style = {{paddingLeft: '50px'}} >
-                      <p><b>Local Number: </b>{this.state.local_number}</p>
-                      <p><b>Patient Number: </b>{this.state.Number}</p>
-                      <p><b>Name: </b>{this.state.Name}</p>
-                      <p><b>Sex: </b>{this.state.Sex}</p>
-                      <p><b>Birth: </b>{this.state.Birth}</p>
-                      <p><b>Citizen Id: </b>{this.state.CC_id}</p>
-                  </div>
-                  <div class="w3-col s3 " style = {{paddingLeft: '50px'}} >
-                      <p><b>SNS: </b>{this.state.SNS}</p>
-                      <p><b>Address: </b>{this.state.Address}</p>
-                      <p><b>Postal Code: </b>{this.state.PostalCode}</p>
-                      <p><b>Locality: </b>{this.state.Localidade}</p>
-                      <p><b>Phone Number: </b>{this.state.PhoneNumber}</p>
-                      <p><b>Email: </b>{this.state.Email}</p>
-                  </div>
-                      
-                  <div class="w3-col s3 " style = {{paddingLeft: '50px'}} >
-                      <p><b>Last Updated on: </b>{this.state.data_atualizacao}</p>
-                      <p><b>Integrated on: </b>{this.state.data_insercao}</p>
-                      
-                </div>
-                <div class="w3-col s3 " style = {{paddingLeft: '50px'}} >
-                    <p><b>Observations: </b></p>
-                    <div class="w3-panel w3-white">
-                    {this.state.OBS}
-                    </div>
-                </div>
-              
-              </div>
-              
-              <div class="w3-container w3-content">
-                
-                <div class="w3-third w3-left">
-                  <Receita value={this.state.meds} onMedRemove={this.removeMed}/>
-                </div>
-
-                <div class="w3-third w3-center">
-                  <Meds onMedSubmit={this.addMed} />
-                </div>
-
-                <div class="w3-third">
-                  <Interactions value={this.state.interactions} />
-                </div>
-
-              </div>
             
-            </div>
-
           );
       }
-    }   
-}
+    }  
+}    
 
 export default Utente;
