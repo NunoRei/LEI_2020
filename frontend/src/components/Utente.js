@@ -41,6 +41,7 @@ class Utente extends Component {
         this.updateInteractions =this.updateInteractions.bind(this)
         this.addMed = this.addMed.bind(this)
         this.removeMed = this.removeMed.bind(this)
+        this.profileUpdate = this.profileUpdate.bind(this)
     }
 
     handleChange(event) 
@@ -190,6 +191,48 @@ class Utente extends Component {
         })
       }
   }
+
+  profileUpdate(
+    number,
+    name,
+    sex,
+    birth,
+    cc_id,
+    sns,
+    address,
+    postalCode,
+    locality,
+    phone,
+    email,
+    obs
+  )
+  {
+    console.log((birth.split("T"))[0])
+    axios.request({
+      method: 'PUT',
+      url: `http://localhost:3100/updateUtente`,
+      data: {
+        nUtente: number,
+        nome: name,
+        sexo: sex,
+        data: (birth.split("T"))[0],
+        cc_id: cc_id,
+        sns: sns,
+        morada: address,
+        codigo_postal: postalCode,
+        localidade: locality,
+        telemovel: phone,
+        email: email,
+        obs: obs
+      }
+    }).then(response => {
+        console.log(response)
+        this.handleOnSubmit()
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   render() 
     {   
       if (this.state.caughtError) {
@@ -233,7 +276,7 @@ class Utente extends Component {
         }
         else {
           return(
-            <div class="w3-container w3-content">
+            <div class="w3-container w3-content w3-padding-large">
 
               <div>
                 <UtenteInfo 
@@ -252,6 +295,7 @@ class Utente extends Component {
                   updateDate={this.state.data_atualizacao}
                   insertDate={this.state.data_insercao}
                   obs={this.state.OBS}
+                  onEditSave={this.profileUpdate}
                 />
               </div>
                
