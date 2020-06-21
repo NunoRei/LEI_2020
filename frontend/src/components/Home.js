@@ -8,7 +8,7 @@ function Home()
         
         <div class="row" style = {{paddingLeft: '30px', paddingRight: '30px', paddingBottom: '30px', textAlign: 'justify'}}>
 
-            <div  class="w3-panel " style= {{background: 'rgba(173,216,230, 0.5)' }}>
+            <div  class="w3-panel " style= {{background: 'rgba(173,216,230, 0.2)' }}>
                 <div class="w3-container">
                     <h3>A aplicação</h3>
                     <div class="w3-justyfi ">
@@ -17,7 +17,7 @@ function Home()
                     </div>
                 </div>
             </div>
-            <h3>Insturções</h3>
+            <h3>Instruções</h3>
             
             <h4 class = 'NovUtente' id = 'NovUtente'>Novo Utente </h4>
             <div class="w3-card-4 ">

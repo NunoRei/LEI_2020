@@ -1,3 +1,7 @@
+
+*{
+  font-family: 'Comfortaa', cursive;
+}
 .App {
   text-align: center;
 }
@@ -56,7 +60,7 @@ ul{
 }
 
 .b-img{
-  /* background-image: url('./img/drug2.png');  */
+  /*background-image: url('./img/drug2.png');  */
   background-size:cover;
   background-color: #ffffff;
 }
@@ -82,11 +86,16 @@ ul{
 .footer {
   overflow: auto;
   background: rgba(173,216,230, 0.2);
-  position: relative;
+  position: static;
   left: 0;
   bottom: 0;
   padding: 5px;
   width: 100%;
   color: black;
   text-align: center;
+  
+}
+
+h1,h2,h3,h4,h5{
+  font-family: 'Comfortaa', cursive;
 }

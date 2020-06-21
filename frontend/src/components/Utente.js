@@ -266,7 +266,7 @@ class Utente extends Component {
                         type="text"
                         value={this.state.inputNumber}
                         name="inputNumber"
-                        placeholder="Patient Number"
+                        placeholder="Número do Utente"
                         onChange={this.handleChange}
                       />
                       <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 

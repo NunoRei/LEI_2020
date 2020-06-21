@@ -83,8 +83,8 @@ class AddUtente extends Component {
             return (
 
                 <div class="w3-row">
-                    <div class="w3-quarter" > <br/></div>
-                    <div class=" w3-margin" style = {{backgroundColor: 'rgba(173,216,230, 0.2)'}}  >
+                    <div class="w3-col" style={{width:"10%"}}> <br/></div>
+                    <div class=" w3-half w3-margin" style = {{backgroundColor: 'rgba(173,216,230, 0.2)',width:"80%"}}  >
                         
                         <form class="w3-padding w3-card"  onSubmit={this.handleOnSubmit} >
                             <h2 class="w3-center">Novo Utente</h2>
@@ -121,7 +121,7 @@ class AddUtente extends Component {
                                 placeholder="Género do utente"
                                 onChange={this.handleChange}
                             />
-                            <label>Cartao de Cidadao</label>
+                            <label>Cartão de Cidadao</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
                                 value={this.state.CC_id}
@@ -129,7 +129,7 @@ class AddUtente extends Component {
                                 placeholder="Cartao de Cidadao"
                                 onChange={this.handleChange}
                             />
-                            <label>Numero do Servico Nacional de Saude</label>
+                            <label>Número do Servico Nacional de Saude</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
                                 value={this.state.SNS}
@@ -145,7 +145,7 @@ class AddUtente extends Component {
                                 placeholder="Morada"
                                 onChange={this.handleChange}
                             />
-                            <label>Codigo Postal</label>
+                            <label>Código Postal</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
                                 value={this.state.PostalCode}
@@ -161,7 +161,7 @@ class AddUtente extends Component {
                                 placeholder="Localidade"
                                 onChange={this.handleChange}
                             />
-                            <label>Telemovel</label>
+                            <label>Telemóvel</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
                                 value={this.state.PhoneNumber}
@@ -177,7 +177,7 @@ class AddUtente extends Component {
                                 placeholder="Email"
                                 onChange={this.handleChange}
                             />
-                            <label>Observacoes</label>
+                            <label>Observações</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
                                 value={this.state.OBS}
@@ -190,7 +190,7 @@ class AddUtente extends Component {
                             </div>
                         </form>
                     </div>
-                    <div class="w3-quarter" ></div>
+                    <div class="w3-quarter" ><br/></div>
                 </div>
             )
         }
