@@ -1,4 +1,8 @@
+require('dotenv').config({path: './cloud.env'});
 var express = require('express');
+const cloudinary = require('cloudinary').v2;
+const formData = require('express-form-data');
+const cors = require('cors');
 var router = express.Router();
 var medicamentos = require('../controllers/medicamento');
 var utentes = require('../controllers/utente');
@@ -10,6 +14,7 @@ var upload = multer({dest:'uploads/'})
 var fs = require('fs')
 
 router.use(function(req, res, next) {
+  formData.parse()
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
@@ -30,6 +35,22 @@ router.get('/meds',(req,res) =>{
     .catch(erro => {
       res.jsonp(erro)
     })
+})
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+})
+
+router.post('/image-upload', upload.array('image'),(req, res) => {
+
+  const values = Object.values(req.files)
+  const promises = values.map(image => cloudinary.uploader.upload(image.path))
+  
+  Promise
+    .all(promises)
+    .then(results => res.json(results))
 })
 
 router.post('/images',upload.array('ficheiro'),(req,res)=>{
@@ -113,6 +134,20 @@ router.put('/updateUtente', (req,res)=>{
 
   utentes.updateUtente(nome,sexo,data,nUtente,cc_id,sns,morada,
     codigo_postal,localidade,telemovel,email,obs)
+    .then(dados => {
+      res.end(JSON.stringify(dados));
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
+router.put('/updatePicture', (req,res)=>{
+
+  nUtente=req.body.nUtente
+  PicUrl=req.body.PicUrl
+
+  utentes.updatePicture(nUtente,PicUrl)
     .then(dados => {
       res.end(JSON.stringify(dados));
     })

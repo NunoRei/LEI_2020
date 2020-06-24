@@ -5,9 +5,7 @@ import Receita from '../components/Receita';
 import UtenteInfo from '../components/UtenteInfo'
 import Interactions from '../components/Interactions';
 import Alert from '@material-ui/lab/Alert';
-import Profilepic from '../profile.png';
-
-import FormData from 'form-data'
+import FormData from 'form-data';
 
 class Utente extends Component {
     constructor(props) 
@@ -36,7 +34,7 @@ class Utente extends Component {
           interactions: [],
           notLoaded: true,
           caughtError: false,
-          profilePic:null
+          PicUrl: ''
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -46,7 +44,6 @@ class Utente extends Component {
         this.addMed = this.addMed.bind(this)
         this.removeMed = this.removeMed.bind(this)
         this.profileUpdate = this.profileUpdate.bind(this)
-        this.onDrop= this.onDrop.bind(this)
     }
 
     handleChange(event) 
@@ -106,7 +103,7 @@ class Utente extends Component {
                       data_insercao: data.DATA_INSERCAO,
                       notLoaded: false,
                       caughtError: false,
-                      profilePic: {Profilepic}
+                      PicUrl: data.PICTURE
                   })
                   
               }).then(z => {
@@ -239,30 +236,6 @@ class Utente extends Component {
     })
   }
 
-  onDrop(picture) {
-    let data = new FormData();
-    data.append('name',this.state.Number)
-    data.append('ficheiro',picture[0])
-
-    fetch("http://localhost:3100/images", {
-      method: 'POST',
-      body: data
-    })
-    .then((response) => {
-      //handle success
-      console.log(response);
-      this.setState({
-        profilePic:picture[0]
-      })
-      console.log(this.state.profilePic)
-    })
-  .catch(function (response) {
-      //handle error
-      console.log(response);
-  });
-
-  }
-
   render() 
     {   
       if (this.state.caughtError) {
@@ -326,8 +299,7 @@ class Utente extends Component {
                   insertDate={this.state.data_insercao}
                   obs={this.state.OBS}
                   onEditSave={this.profileUpdate}
-                  onDrop={this.onDrop}
-                  profilePic={this.state.profilePic}
+                  PicUrl={this.state.PicUrl}
                 />
               </div>
                

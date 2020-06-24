@@ -2,17 +2,13 @@ import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
-
+import Profilepic from '../profile.png';
 import Divider from '@material-ui/core/Divider';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import ImageUploader from "react-images-upload";
-
-
-
+import axios from 'axios';
 
 class UtenteInfo extends Component {
     constructor(props)
@@ -36,12 +32,14 @@ class UtenteInfo extends Component {
             UpdateDate: this.props.updateDate,
             InsertDate: this.props.insertDate,
             Obs: this.props.obs,
-            profilePic:this.props.profilePic
+            PicUrl: this.props.PicUrl,
+            loading: false
         }
-        console.log(this.state.profilePic.Profilepic)
+
         this.onInputChange = this.onInputChange.bind(this)
         this.onEditCancel = this.onEditCancel.bind(this)
         this.onEditProfileClick = this.onEditProfileClick.bind(this)
+        this.onChange = this.onChange.bind(this)
 
     }
 
@@ -69,7 +67,8 @@ class UtenteInfo extends Component {
             Email: props.email,
             UpdateDate: props.updateDate,
             InsertDate: props.insertDate,
-            Obs: props.obs
+            Obs: props.obs,
+            uploading: false 
         }) 
     }
 
@@ -95,9 +94,49 @@ class UtenteInfo extends Component {
         })
     }
 
-
+    onChange = e => {
+        const files = Array.from(e.target.files)
+        this.setState({ uploading: true })
+    
+        const formData = new FormData()
+    
+        files.forEach((file, i) => {
+          formData.append('image', file)
+        })
+    
+        fetch('http://localhost:3100/image-upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(res => res.json())
+        .then(image => {
+            axios.request({
+                method: 'PUT',
+                url: `http://localhost:3100/updatePicture`,
+                data: {
+                  nUtente: this.state.Number,
+                  PicUrl: image[0].url
+                }
+              }).then(response => {
+                this.setState({
+                    uploading: false,
+                    PicUrl: image[0].url
+                })
+              }).catch(error => {
+                console.log(error)
+              })
+        })
+    }
 
     render() {
+        
+        var picture;
+        if (this.state.PicUrl === '') {
+            picture = Profilepic;
+        } else {
+            picture = this.state.PicUrl;
+        }
+
         return (
             <div>
                 <h3 class="w3-center">
@@ -105,9 +144,17 @@ class UtenteInfo extends Component {
                 </h3>
                 
                 <div class="w3-card-4 w3-padding-large">
+                <Button
+                            variant="contained"
+                            color="default"
+                            onClick={() => this.onEditProfileClick()}
+                            startIcon={<EditIcon />}
+                        >
+                            Edit Profile
+                </Button> 
                      <div class="w3-center">
                         <img 
-                            src={this.state.profilePic.Profilepic}
+                            src={picture}
                             alt=""
                             width="100" 
                             height="110"
@@ -115,28 +162,18 @@ class UtenteInfo extends Component {
                         />
                     </div>
                     <div class="w3-center w3-padding-large">
-                    <ImageUploader
-                        withIcon={true}
-                        onChange={this.props.onDrop}
-                        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                        maxFileSize={5242880}
-                        singleImage={true}
-                    />
-                        <Button
-                            variant="contained"
-                            color="default"
-                            startIcon={<CloudUploadIcon />}
-                        >
-                            Upload Picture
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="default"
-                            onClick={() => this.onEditProfileClick()}
-                            startIcon={<EditIcon />}
-                        >
-                            Edit Profile
-                        </Button>
+                        <input 
+                            type="file"
+                            name="file"
+                            id='file'
+                            accept="image/png, image/jpeg, image/jpg"
+                            onChange={this.onChange}
+                            class="inputfile"
+                        />
+                        <label for="file">
+                            <CloudUploadIcon />
+                            UPLOAD PICTURE
+                        </label>
                     </div>
                     <Divider />
                     <div class="w3-cell-row">
@@ -366,7 +403,7 @@ class UtenteInfo extends Component {
                         <div class="w3-cell">
                             Last Updated on {this.state.UpdateDate.split("T")[0]} at {(this.state.UpdateDate.split("T")[1]).split(".")[0]}
                         </div>
-                    </div>          
+                    </div>         
                 </div>
             </div>
         );

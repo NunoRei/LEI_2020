@@ -58,3 +58,15 @@ module.exports.updateUtente = (
             
     return Database.queryObject(query, {n:nUtente}, {outFormat: ""});
 }
+
+module.exports.updatePicture = (
+    nUtente,
+    PicUrl
+    ) => {
+
+    var query = "update utente"
+                +" set PICTURE = '"+PicUrl+"'"
+                +" where N_UTENTE = :n"
+            
+    return Database.queryObject(query, {n:nUtente}, {outFormat: ""});
+}
