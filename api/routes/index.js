@@ -5,6 +5,10 @@ var utentes = require('../controllers/utente');
 var receita = require('../controllers/receita');
 var axios = require('axios');
 
+var multer = require('multer')
+var upload = multer({dest:'uploads/'})
+var fs = require('fs')
+
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -26,6 +30,20 @@ router.get('/meds',(req,res) =>{
     .catch(erro => {
       res.jsonp(erro)
     })
+})
+
+router.post('/images',upload.array('ficheiro'),(req,res)=>{
+  var name = req.body.name
+  //console.log("Nome: " + name)
+
+  let oldPath = __dirname + '/../' + req.files[0].path
+  let newPath = __dirname + '/../public/ficheiros/' + name+ ".png"
+
+  fs.rename(oldPath,newPath, function(err){
+    if(err) console.log(err)
+    res.sendStatus(200)
+  })
+
 })
 
 router.get('/utente', (req,res) =>{
@@ -160,5 +178,7 @@ router.get('/interaction',(req,res)=>{
         res.jsonp(erro)
       })
 })
+
+
 
 module.exports = router;

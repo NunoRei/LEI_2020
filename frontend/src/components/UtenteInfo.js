@@ -2,12 +2,17 @@ import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
-import Profilepic from '../profile.png';
+
 import Divider from '@material-ui/core/Divider';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import MenuItem from '@material-ui/core/MenuItem';
+
+import ImageUploader from "react-images-upload";
+
+
+
 
 class UtenteInfo extends Component {
     constructor(props)
@@ -30,9 +35,10 @@ class UtenteInfo extends Component {
             Email: this.props.email,
             UpdateDate: this.props.updateDate,
             InsertDate: this.props.insertDate,
-            Obs: this.props.obs
+            Obs: this.props.obs,
+            profilePic:this.props.profilePic
         }
-
+        console.log(this.state.profilePic.Profilepic)
         this.onInputChange = this.onInputChange.bind(this)
         this.onEditCancel = this.onEditCancel.bind(this)
         this.onEditProfileClick = this.onEditProfileClick.bind(this)
@@ -53,7 +59,7 @@ class UtenteInfo extends Component {
             Number: props.number,
             Name: props.name,
             Sex: props.sex,
-            Birth: props.birth,
+            Birth: props.birth.split("T")[0],
             CC_id: props.cc_id,
             SNS: props.SNS,
             Address: props.address,
@@ -89,6 +95,8 @@ class UtenteInfo extends Component {
         })
     }
 
+
+
     render() {
         return (
             <div>
@@ -99,7 +107,7 @@ class UtenteInfo extends Component {
                 <div class="w3-card-4 w3-padding-large">
                      <div class="w3-center">
                         <img 
-                            src={Profilepic}
+                            src={this.state.profilePic.Profilepic}
                             alt=""
                             width="100" 
                             height="110"
@@ -107,6 +115,13 @@ class UtenteInfo extends Component {
                         />
                     </div>
                     <div class="w3-center w3-padding-large">
+                    <ImageUploader
+                        withIcon={true}
+                        onChange={this.props.onDrop}
+                        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                        maxFileSize={5242880}
+                        singleImage={true}
+                    />
                         <Button
                             variant="contained"
                             color="default"
