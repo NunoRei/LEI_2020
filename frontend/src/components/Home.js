@@ -5,60 +5,70 @@ function Home()
 {
     return (
  
-        
-        <div className="row" style = {{paddingLeft: '30px', paddingRight: '30px', paddingBottom: '30px', textAlign: 'justify'}}>
-
-            <div  className="w3-panel " style= {{background: 'rgba(173,216,230, 0.2)' }}>
-                <div className="w3-container">
+            <div class="row" style = {{paddingLeft: '30px', paddingRight: '30px',paddingBottom: '30px', paddingTop: '30px', textAlign: 'justify'}}>
+            <div  class="w3-card-4 " style= {{ background: 'rgba(173,216,230, 0.2)' }}>
+                <div class="w3-container">
                     <h3>A aplicação</h3>
-                    <div className="w3-justyfi ">
+                    <div class="w3-justyfi ">
                         <p>Existem interações medicamentosas que podem aumentar, ou reduzir, o efeito de um medicamento e causar sérios problemas aos pacientes. </p> 
                         <p>Esta aplicação serve para apoiar a prescrição de medicamentos, a pacientes, para que não haja interações graves. </p>
                     </div>
                 </div>
             </div>
-            <h3>Instruções</h3>
+            <h3 style = {{marginTop: '20px'}}>Instruções</h3>
             
-            <h4 className = 'NovUtente' id = 'NovUtente'>Novo Utente </h4>
-            <div className="w3-card-4 ">
-                <div className="w3-container">
-                    <div className="w3-justyfi ">
-                    <img src={require('../img/novoUtente.png')} alt= "alps" style={{width: "40%"}} className = "w3-center w3-right"/>
-                    <p>A partir do menu lateral, aceder ao separdor "Adicionar utente".</p>
+            <div class="w3-card-4 " style= {{marginTop: '20px', background: 'rgba(173,216,230, 0.2)' }}>
+                <div class="w3-container">
+                    <h4 class = 'NovUtente' id = 'NovUtente'>Novo Utente </h4>
+                    <div class="w3-justyfi ">
+                    <img src={require('../img/novoUtente.png')} alt= "alps" style={{marginLeft:'40px',marginBottom: '40px', width: "50%"}} class = "w3-center w3-right"/>
+                    <p>A partir do menu lateral, aceder ao separdor "Register Patient".</p>
                     <p>Preencher os campos, com os dados do paciente:</p>
-                    <ul className = 'ul'>
-                        <li>Número sequencial (Não sei se não deverá ser gerado automaticamente na inserção)</li>
-                        <li>Nome completo (obrigatório)</li>
-                        <li>Número do cartão de cidadão (obrigatório)</li>
-                        <li>Número de saúde SNS (obrigatório)</li>
-                        <li>Data de Nascimento (obrigatório)</li>
-                        <li>Género (obrigatório)</li>
+                    <ul class = 'ul'>
+                        <li>Nome completo</li>
+                        <li>Número de paciente</li>
+                        <li>Data de Nascimento </li>
+                        <li>Género </li>
+                        <li>Número do cartão de cidadão</li>
+                        <li>Número de saúde SNS</li>
                         <li>Morada </li>
+                        <li>Código Postal</li>
                         <li>Localidade </li>
-                        <li>Némero de telemóvel </li>
-                        <li>Número de telefone </li>
+                        <li>Número de telemóvel </li>
                         <li>E-mail </li>
+                        <li>Observações</li>
                     </ul>
-                    <p>Por fim, clicar no botão adicionar utente.</p>
+                    <p>Por fim, clicar no botão "Register" para adicionar utente.</p>
                     </div>
                 </div>
             </div>
-
-           
-            <h4 className = 'Utente' id = 'Utente'>Utente </h4>
-            <div className="w3-card-4 " style= {{background: 'rgba(173,216,230, 0.2)' }}>
-                <div className="w3-container">
-                    <div className="w3-justyfi ">
-                    <img src={require('../img/utente.png')} alt= "alps" style={{paddingLeft: '30px', width: "50%"}} className = "w3-center w3-right"/>
-                    <p>A partir do menu lateral, aceder ao separdor "Utente" para prescrever medicamnetos ao paciente e ver a interação dos medicamentos.</p>
+            <div class="w3-card-4 " style= {{marginTop: '20px', background: 'rgba(173,216,230, 0.2)' }}>
+                <div class="w3-container">
+                    <h4 class = 'Utente' id = 'Utente'>Editar um utente </h4>
+                    <div class="w3-justyfi ">
+                    <img src={require('../img/utente.png')} alt= "alps" style={{marginBottom: '40px', marginLeft:'20px', paddingLeft: '30px', height: "7.5cm", width: "15cm"}} class = "w3-center w3-right"/>
+                    <p>A partir do menu lateral, aceder ao separdor "Patient".</p>
                     <p>Procurar o utente através do número.</p>
-                    <p>Procurar o medicamento que quer prescrever através da caixa "medicamento". Adicionar à prescrição, do lado direito irá aparecer as interações entre os medicamentos.</p>
-                    <p>Clique no botão validar, caso haja interações graves será alertado deverá retirar os medicamentos (na caixa do lado esquerdo) para que não haja interações graves. Após este processo, voltar a validar a prescrição.</p>
-                    <p>Caso queira editar a informação do paciente clicar no botão editar. </p>
+                    <p>Poderá inserir ou alterar a fotografia do utente, usando o botão  "UPLOAD PICTURE".</p>
+                    <p>Poderá editar a informação fo utente usando o botão "EDIT PROFILE".</p>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="w3-card-4 " style= {{marginTop: '20px', background: 'rgba(173,216,230, 0.2)' }}>
+                <div class="w3-container">
+                    <h4 class = 'Utente' id = 'Utente'>Prescrição de medicamentos </h4>
+                    <div class="w3-justyfi ">
+                    <img src={require('../img/utente-pres.PNG')} alt= "alps" style={{marginBottom: '40px', marginLeft:'20px', paddingLeft: '30px', height: "7.5cm", width: "15cm"}} class = "w3-center w3-right"/>
+                    <p>A partir do menu lateral, aceder ao separdor "Patient" para prescrever medicamnetos ao paciente e ver a interação dos medicamentos.</p>
+                    <p>Procurar o utente através do número.</p>
+                    <p>Procurar o medicamento que quer prescrever através da caixa "Add a Drug to the Prescription". Adicionar à prescrição, usando o botão '+'.</p>
+                    <p>Caso haja alguma interação, esta informação será apresentada na caixa de texto em baixo.</p>
                     </div>
                 </div>
             </div>
         </div>
+            
        
     ) 
 }
