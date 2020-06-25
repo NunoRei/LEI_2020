@@ -43,7 +43,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 })
 
-router.post('/image-upload', upload.array('image'),(req, res) => {
+router.post('/image-upload', upload.array('image'), (req, res) => {
 
   const values = Object.values(req.files)
   const promises = values.map(image => cloudinary.uploader.upload(image.path))
@@ -148,6 +148,20 @@ router.put('/updatePicture', (req,res)=>{
   PicUrl=req.body.PicUrl
 
   utentes.updatePicture(nUtente,PicUrl)
+    .then(dados => {
+      res.end(JSON.stringify(dados));
+    })
+    .catch(erro => {
+      res.jsonp(erro)
+    })
+})
+
+router.put('/updateState', (req,res)=>{
+
+  nUtente=req.body.nUtente
+  Estado=req.body.Estado
+
+  utentes.updateState(nUtente,Estado)
     .then(dados => {
       res.end(JSON.stringify(dados));
     })

@@ -119,8 +119,8 @@ h1,h2,h3,h4,h5{
   background-color: lightgrey;
   display: inline-block;
   padding: 6px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  border-style: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  border-style: auto;
   outline-style: auto;
 }
 

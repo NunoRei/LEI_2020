@@ -6,6 +6,7 @@ import UtenteInfo from '../components/UtenteInfo'
 import Interactions from '../components/Interactions';
 import Alert from '@material-ui/lab/Alert';
 import FormData from 'form-data';
+import { Redirect } from 'react-router-dom';
 
 class Utente extends Component {
     constructor(props) 
@@ -44,6 +45,7 @@ class Utente extends Component {
         this.addMed = this.addMed.bind(this)
         this.removeMed = this.removeMed.bind(this)
         this.profileUpdate = this.profileUpdate.bind(this)
+        this.disableState = this.disableState.bind(this)
     }
 
     handleChange(event) 
@@ -103,7 +105,8 @@ class Utente extends Component {
                       data_insercao: data.DATA_INSERCAO,
                       notLoaded: false,
                       caughtError: false,
-                      PicUrl: data.PICTURE
+                      PicUrl: data.PICTURE,
+                      estado: data.ESTADO
                   })
                   
               }).then(z => {
@@ -210,7 +213,7 @@ class Utente extends Component {
     obs
   )
   {
-    console.log((birth.split("T"))[0])
+
     axios.request({
       method: 'PUT',
       url: `http://localhost:3100/updateUtente`,
@@ -230,7 +233,30 @@ class Utente extends Component {
       }
     }).then(response => {
         console.log(response)
-        this.handleOnSubmit()
+        //this.handleOnSubmit()
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  disableState(
+    number,
+    estado
+  )
+  {
+
+    axios.request({
+      method: 'PUT',
+      url: `http://localhost:3100/updateState`,
+      data: {
+        nUtente: number,
+        Estado: estado
+      }
+    }).then(response => {
+        console.log(response)
+        this.setState({
+          estado: estado
+        })
     }).catch(error => {
       console.log(error)
     })
@@ -238,7 +264,7 @@ class Utente extends Component {
 
   render() 
     {   
-      if (this.state.caughtError) {
+      if (this.state.caughtError || this.state.estado === 0) {
         return(
           <div class="w3-padding-large">
             <div class="w3-container w3-row w3-content">
@@ -255,7 +281,7 @@ class Utente extends Component {
                       <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
             </div>
             <Alert severity="error">
-                      No Patient found with that Number — <strong>Register it!</strong>
+                      Patient not found — <strong>Register it!</strong>
             </Alert>      
           </div>
         );
@@ -300,6 +326,7 @@ class Utente extends Component {
                   obs={this.state.OBS}
                   onEditSave={this.profileUpdate}
                   PicUrl={this.state.PicUrl}
+                  disableState={this.disableState}
                 />
               </div>
                

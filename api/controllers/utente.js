@@ -70,3 +70,15 @@ module.exports.updatePicture = (
             
     return Database.queryObject(query, {n:nUtente}, {outFormat: ""});
 }
+
+module.exports.updateState = (
+    nUtente,
+    estado
+    ) => {
+
+    var query = "update utente"
+                +" set Estado = '"+estado+"'"
+                +" where N_UTENTE = :n"
+            
+    return Database.queryObject(query, {n:nUtente}, {outFormat: ""});
+}

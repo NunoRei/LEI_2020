@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 
 class AddUtente extends Component {
     constructor() 
@@ -24,7 +26,6 @@ class AddUtente extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
-        //this.handleOnSubmit = this.handleChange.bind(this)
     }
 
     handleChange(event) 
@@ -35,20 +36,6 @@ class AddUtente extends Component {
         [name]: value
       })
     }
-
-    /*
-    fetch('https://mywebsite.com/endpoint/', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            firstParam: 'yourValue',
-            secondParam: 'yourOtherValue',
-        }),
-    });
-    */
 
     handleOnSubmit = (e) =>
     {
@@ -113,14 +100,27 @@ class AddUtente extends Component {
                                 placeholder=""
                                 onChange={this.handleChange}
                             />
-                            <label>Género</label>
-                            <input class="w3-input w3-round-large"
-                                type="text"
+                            <label>Gender</label>
+                            <TextField
+                                id="outlined-basic"
+                                fullWidth="true"
+                                label=""
+                                select 
                                 value={this.state.Sex}
                                 name="Sex"
-                                placeholder="Género do utente"
-                                onChange={this.handleChange}
-                            />
+                                margin="none"
+                                size="small"
+                                variant="outlined"
+                                color="primary"
+                                style={{ flex: 1, margin: '0 20px 0 0', color: 'white'}}
+                                onChange={this.handleChange} 
+                            >
+                                {gender.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                             <label>Cartão de Cidadao</label>
                             <input class="w3-input w3-round-large"
                                 type="text"
@@ -200,3 +200,14 @@ class AddUtente extends Component {
 }
 
 export default AddUtente;
+
+const gender = [
+    {
+        value: 'M',
+        label: 'Male',
+    },
+    {
+        value: 'F',
+        label: 'Female'
+    }
+]

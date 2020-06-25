@@ -8,6 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import MenuItem from '@material-ui/core/MenuItem';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import axios from 'axios';
 
 class UtenteInfo extends Component {
@@ -131,7 +132,7 @@ class UtenteInfo extends Component {
     render() {
         
         var picture;
-        if (this.state.PicUrl === '') {
+        if (this.state.PicUrl === '' || this.state.PicUrl === null) {
             picture = Profilepic;
         } else {
             picture = this.state.PicUrl;
@@ -142,22 +143,38 @@ class UtenteInfo extends Component {
                 <h3 class="w3-center">
                     Patient's Personal Information
                 </h3>
-                
                 <div class="w3-card-4 w3-padding-large">
-                <Button
+
+                        <Button
                             variant="contained"
                             color="default"
                             onClick={() => this.onEditProfileClick()}
                             startIcon={<EditIcon />}
                         >
-                            Edit Profile
-                </Button> 
+                        <b>Edit</b>
+                        </Button>
+
+                        <Button
+                            variant="contained"
+                            color="default"
+                            onClick={() => 
+                            
+                                this.props.disableState(
+                                    this.state.Number,
+                                    0
+                                )
+                            }
+                            startIcon={<RemoveRedEyeIcon />}
+                        >
+                        <b>Disable</b>
+                        </Button>
+
                      <div class="w3-center">
                         <img 
                             src={picture}
                             alt=""
-                            width="100" 
-                            height="110"
+                            width="160" 
+                            height="180"
                             class="w3-circle"
                         />
                     </div>
@@ -171,8 +188,8 @@ class UtenteInfo extends Component {
                             class="inputfile"
                         />
                         <label for="file">
-                            <CloudUploadIcon />
-                            UPLOAD PICTURE
+                            <CloudUploadIcon/>
+                                UPLOAD PICTURE
                         </label>
                     </div>
                     <Divider />
@@ -384,7 +401,7 @@ class UtenteInfo extends Component {
                                 }}
                                 startIcon={<SaveIcon />}
                             >
-                                Save
+                                <b>Save</b>
                             </Button>
                             <Button
                                 variant="contained"
@@ -392,7 +409,7 @@ class UtenteInfo extends Component {
                                 onClick={() => this.onEditCancel(this.props)}
                                 startIcon={<CancelIcon />}
                             >
-                                Cancel
+                               <b>Cancel</b> 
                             </Button>
                         </div>    
                     }
@@ -401,7 +418,7 @@ class UtenteInfo extends Component {
                             Integrated on {this.state.InsertDate.split("T")[0]} at {(this.state.InsertDate.split("T")[1]).split(".")[0]} 
                         </div>
                         <div class="w3-cell">
-                            Last Updated on {this.state.UpdateDate.split("T")[0]} at {(this.state.UpdateDate.split("T")[1]).split(".")[0]}
+                            <span>Last Updated on {this.state.UpdateDate.split("T")[0]} at {(this.state.UpdateDate.split("T")[1]).split(".")[0]}</span>
                         </div>
                     </div>         
                 </div>
