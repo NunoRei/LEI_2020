@@ -20,9 +20,9 @@ class Interactions extends Component {
     {
         return(
             <div>
-                <h3 class="w3-center"> Drug Interaction's within the Prescription </h3>
-                <ul class="w3-ul w3-card-4">
-                    <li class="w3-display-container">
+                <h3 className="w3-center"> Drug Interaction's within the Prescription </h3>
+                <ul className="w3-ul w3-card-4">
+                    <li className="w3-display-container">
                     {this.props.value.sort(function(a,b) {
                             if(a.interactionPair[0].severity === "high" && b.interactionPair[0].severity === "high") 
                                 return 0;

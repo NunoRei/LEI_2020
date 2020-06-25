@@ -17,7 +17,7 @@ module.exports.insertUtente = (
 
     var query = "insert into utente (nome,n_utente,data_nascimento,sexo,cc_id,"
                 +"sns,morada,codigo_postal,localidade,telemovel,email,obs)"
-                +" values('"+nome+"',"+nUtente+",to_date('"+ data +"','yyyy/mm/dd'),'" + sexo+ "','"+cc_id+"','"+sns+"','"+morada+"','"+codigo_postal+"','"+localidade+"','"+telemovel+"','"+email+"','"+obs+"')"
+                +" values('"+nome+"',"+nUtente+",to_date('"+ data +" 01:00:00','yyyy/mm/dd HH:MI:SS'),'" + sexo+ "','"+cc_id+"','"+sns+"','"+morada+"','"+codigo_postal+"','"+localidade+"','"+telemovel+"','"+email+"','"+obs+"')"
     
     return Database.queryObject(query, {}, {outFormat: ""});
 }
@@ -44,7 +44,7 @@ module.exports.updateUtente = (
     var query = "update utente"
                 +" set nome = '"+nome+"',"
                 +" sexo = '"+sexo+"',"
-                +" data_nascimento = to_date('"+ data +"','yyyy/mm/dd'),"
+                +" data_nascimento = to_date('"+ data +" 01:00:00','yyyy/mm/dd HH:MI:SS'),"
                 +" cc_id = '"+cc_id+"',"
                 +" sns = '"+sns+"',"
                 +" morada = '"+morada+"',"
