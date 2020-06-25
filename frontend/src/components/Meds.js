@@ -64,14 +64,4 @@ class Meds extends Component {
     }
 }
 
-/*
-<div class="w3-padding-large">
-<button 
-class="w3-button w3-pale-green w3-border w3-border-teal w3-hover-teal w3-round-large" 
-onClick={() => this.props.onMedSubmit(this.state.selection)}
->
-  <b>Add to Prescription</b>
-</button>
-</div>
-*/
 export default Meds;

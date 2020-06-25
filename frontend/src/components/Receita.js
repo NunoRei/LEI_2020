@@ -14,7 +14,6 @@ class Receita extends Component {
         this.state = {
             meds: []
         }
-
     }
     
     render()
@@ -48,39 +47,7 @@ class Receita extends Component {
                 </ul>
             </div>
         );
-    }
-    /*
-    render() 
-    {
-        return(
-            <div>
-            <Paper elevation={3}>
-            <h3 class="w3-center">Prescription</h3>
-            <List>
-            {this.props.value.map(med => 
-            {
-                return (
-                <ListItem 
-                    key={med.MED} 
-                    role={undefined} 
-                    dense 
-                    button 
-                    onClick={() => {}}>
-                <ListItemText primary={med.DESC_C} />
-                    <ListItemSecondaryAction>
-                        <IconButton onClick={() => this.props.onMedRemove(med)}>
-                            <CloseIcon />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-                );
-            }
-        )}
-      </List>
-      </Paper>
-     </div>
-        );
-    }*/   
+    } 
 }
 
 export default Receita;

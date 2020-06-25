@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import SearchIcon from '@material-ui/icons/Search';
 import Receita from '../components/Receita';
 import UtenteInfo from '../components/UtenteInfo'
 import Interactions from '../components/Interactions';
 import Alert from '@material-ui/lab/Alert';
-import FormData from 'form-data';
-import { Redirect } from 'react-router-dom';
+import UtenteSearch from './UtenteSearch';
 
 class Utente extends Component {
     constructor(props) 
@@ -74,7 +72,6 @@ class Utente extends Component {
         }).then(y => this.updateInteractions())
     }
 
-    /* if nao resolve o erro de p number nao existir na BD */
     handleOnSubmit()
     {
       if (this.state.inputNumber !== '')
@@ -266,41 +263,25 @@ class Utente extends Component {
     {   
       if (this.state.caughtError || this.state.estado === 0) {
         return(
-          <div class="w3-padding-large">
-            <div class="w3-container w3-row w3-content">
-                      
-                      <input 
-                        class="w3-large w3-center" 
-                        style={{width: '93%'}}
-                        type="text"
-                        value={this.state.inputNumber}
-                        name="inputNumber"
-                        placeholder="Patient Number"
-                        onChange={this.handleChange}
-                      />
-                      <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
-            </div>
+          <div>
             <Alert severity="error">
                       Patient not found — <strong>Register it!</strong>
-            </Alert>      
+            </Alert>
+            <UtenteSearch 
+              inputNumber={this.state.inputNumber}
+              handleChange={this.handleChange}
+              handleOnSubmit={this.handleOnSubmit}
+            />    
           </div>
         );
       }
       else if (this.state.notLoaded) {
           return(
-            <div class="w3-padding-large">
-            <div class="w3-container w3-row w3-content">
-                      
-                      <input class="w3-large w3-center" style={{width: '93%'}}
-                        type="text"
-                        value={this.state.inputNumber}
-                        name="inputNumber"
-                        placeholder="Número do Utente"
-                        onChange={this.handleChange}
-                      />
-                      <button class="w3-btn  w3-round-xxlarge w3-no-hover w3-no-border"  onClick={() => this.handleOnSubmit()}><SearchIcon/></button> 
-            </div>
-            </div>
+            <UtenteSearch 
+              inputNumber={this.state.inputNumber}
+              handleChange={this.handleChange}
+              handleOnSubmit={this.handleOnSubmit}
+            />
           ); 
         }
         else {

@@ -35,12 +35,21 @@ class Example extends React.Component {
             >
               <h1 className="w3-center">Menu</h1>
                 <a className="bm-item w3-center" href="/" onClick={() => this.closeMenu()}>
-                    <i class="fas fa-home-lg-alt"></i>
-                     Home
+                    <div><i class="fa fa-home"></i></div>
+                      <div>Home</div>
                 </a>
-                <a className="bm-item w3-center" href="/addUtente" onClick={() => this.closeMenu()}>Adicionar Utente </a>
-                <a className="bm-item w3-center" href="/utente" onClick={() => this.closeMenu()}>Utente</a>
-                <a className="bm-item w3-center" href="/about" onClick={() => this.closeMenu()}>Sobre nós</a>
+                <a className="bm-item w3-center" href="/addUtente" onClick={() => this.closeMenu()}>
+                      <div><i class="fa fa-user-plus"></i></div>
+                      <div>Register Patient</div>
+                </a>
+                <a className="bm-item w3-center" href="/utente" onClick={() => this.closeMenu()}>
+                      <div><i class="fa fa-user"></i></div>
+                      <div> Patient</div>
+               </a>
+                <a className="bm-item w3-center" href="/about" onClick={() => this.closeMenu()}>
+                      <div><i class="fa fa-info-circle"></i></div>
+                      <div>About Us</div>
+                </a>
             </Menu>
             <Button onClick={() => this.toggleMenu()} />
           </div>

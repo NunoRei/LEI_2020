@@ -53,48 +53,7 @@ class Interactions extends Component {
                 </ul>
             </div>
         );
-    }
-    /*
-    render() 
-    {
-
-        return(
-            <div>
-                <Paper elevation={3}>
-                    <h3 class="w3-center">Prescription's Interactions</h3>
-                    <List>
-                        {this.props.value.sort(function(a,b) {
-                            if(a.interactionPair[0].severity === "high" && b.interactionPair[0].severity === "high") 
-                                return 0;
-                            else if(a.interactionPair[0].severity === "high")
-                                return -1;
-                            else if(b.interactionPair[0].severity === "high")
-                                return 1;
-                            else 
-                                return 0;
-                        }).map(inter => 
-                            {
-                                return (
-                                <ListItem alignItems="flex-start">
-                                    <ListItemText
-                                         primary={inter.interactionPair[0].description}
-                                    />
-                                    {
-                                        inter.interactionPair[0].severity === "high" &&
-                                        <ListItemIcon>
-                                            <WarningIcon/>
-                                        </ListItemIcon>
-
-                                    }
-                                </ListItem>
-                            );
-                        }
-                        )}
-                    </List>
-                </Paper>
-            </div>
-        );
-    }*/   
+    } 
 }
 
 export default Interactions;

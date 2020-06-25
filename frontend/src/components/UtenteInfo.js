@@ -143,7 +143,7 @@ class UtenteInfo extends Component {
                 <h3 class="w3-center">
                     Patient's Personal Information
                 </h3>
-                <div class="w3-card-4 w3-padding-large">
+                <div class="w3-card-4 w3-padding-large w3-white">
 
                         <Button
                             variant="contained"
@@ -173,7 +173,7 @@ class UtenteInfo extends Component {
                         <img 
                             src={picture}
                             alt=""
-                            width="160" 
+                            width="170" 
                             height="180"
                             class="w3-circle"
                         />
