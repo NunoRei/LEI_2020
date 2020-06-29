@@ -12,6 +12,7 @@ var axios = require('axios');
 var multer = require('multer')
 var upload = multer({dest:'uploads/'})
 var fs = require('fs')
+var path = require('path')
 
 router.use(function(req, res, next) {
   formData.parse()
@@ -50,12 +51,24 @@ router.post('/image-upload', upload.array('image'), (req, res) => {
   
   Promise
     .all(promises)
-    .then(results => res.json(results))
+    .then(results => {
+      fs.readdir('uploads', (err, files) => {
+        if (err) throw err;
+  
+        for (const file of files) {
+          fs.unlink(path.join('uploads', file), err => {
+            if (err) throw err;
+          });
+        }
+      }) 
+      res.json(results)
+    })
+
+   
 })
 
 router.post('/images',upload.array('ficheiro'),(req,res)=>{
   var name = req.body.name
-  //console.log("Nome: " + name)
 
   let oldPath = __dirname + '/../' + req.files[0].path
   let newPath = __dirname + '/../public/ficheiros/' + name+ ".png"
