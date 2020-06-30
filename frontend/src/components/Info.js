@@ -5,7 +5,7 @@ import MediaCard from './card';
 let textRafaela = ["Tenho 22 anos.", "Sou licenciada em Ciências da Computação.", 
 "Estou no 1º ano de mestrado em Engenharia Informática." ]
 
-let textNuno = ["I am a 22 year old Computer Engineering student at University of Minho.", "Currently finishing the Master Degree"]
+let textNuno = ["I am a 22 year old Computer Engineering student at University of Minho.", "Currently finishing my Master's Degree."]
 let ligacoesNuno = ["https://github.com/NunoRei","linkedin.com/in/nuno-rei-15b80419a","nunorei98@gmail.com"]
 
 class Info extends Component {  
