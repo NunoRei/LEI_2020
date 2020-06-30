@@ -16,14 +16,7 @@ export default class UtenteSearch extends Component {
   render() {
     return(
         <div class="w3-padding-large">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        
         <br></br>
         <br></br>
         <br></br>
@@ -50,16 +43,7 @@ export default class UtenteSearch extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        </div>
+       </div>
       );
   }
 

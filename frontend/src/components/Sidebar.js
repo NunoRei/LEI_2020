@@ -28,7 +28,7 @@ class Sidebar extends Component {
                 <Link to="/" style={{ textDecoration: 'none' }}><i class="fa fa-home" /> Home</Link>, 
                 <Link to="/addUtente" style={{ textDecoration: 'none' }}><i class="fa fa-user-plus"/> Adicionar Utente</Link>, 
                 <Link to="/utente" style={{ textDecoration: 'none' }}><i class="fa fa-user"/> Utente</Link>,
-                <Link to="/sobre" style={{ textDecoration: 'none' }}><i class="fa fa-info-circle"/> About us</Link>, 
+                <Link to="/about" style={{ textDecoration: 'none' }}><i class="fa fa-info-circle"/> About us</Link>, 
                 'Contactos',
                 ]}
                 titleStyle     =  {{backgroundColor: '#009BCE'}}
