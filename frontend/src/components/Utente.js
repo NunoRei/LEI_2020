@@ -7,6 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 import UtenteSearch from './UtenteSearch';
 
 class Utente extends Component {
+
     constructor(props) 
     {
         super(props)
@@ -74,8 +75,10 @@ class Utente extends Component {
 
     handleOnSubmit()
     {
+      
       if (this.state.inputNumber !== '')
       {
+        
         let url = new URL('http://localhost:3100/utente')
         url.search = new URLSearchParams({
           nUtente: this.state.inputNumber

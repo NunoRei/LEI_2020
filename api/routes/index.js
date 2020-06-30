@@ -67,19 +67,6 @@ router.post('/image-upload', upload.array('image'), (req, res) => {
    
 })
 
-router.post('/images',upload.array('ficheiro'),(req,res)=>{
-  var name = req.body.name
-
-  let oldPath = __dirname + '/../' + req.files[0].path
-  let newPath = __dirname + '/../public/ficheiros/' + name+ ".png"
-
-  fs.rename(oldPath,newPath, function(err){
-    if(err) console.log(err)
-    res.sendStatus(200)
-  })
-
-})
-
 router.get('/utente', (req,res) =>{
   nUtente = req.query.nUtente
 
