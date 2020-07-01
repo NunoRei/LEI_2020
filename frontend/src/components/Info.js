@@ -6,7 +6,7 @@ import MediaCard from './card';
 let textRafaela = ["I am 22 year old.", "I have a degree in Computer Science and, I am now in the Master in Computer Engineering at the University of Minho.", "I am interested in Business Intelligence and Data Analysis."]
 let ligacoesRafaela = ["https://github.com/Rafaela897","https://linkedin.com/in/rafaela-pinto-de-pinho-5649a5195"]
 
-let textNuno = ["I am a 22 year old Computer Engineering student at University of Minho.", "Currently finishing my Master's Degree."]
+let textNuno = ["I am a 22 year old Computer Engineering student at University of Minho.", "Currently finishing my Master's Degree.", "Highly interested in the Distributed Systems field, Cloud Computing."]
 let ligacoesNuno = ["https://github.com/NunoRei","https://linkedin.com/in/nuno-rei-15b80419a"]
 
 let textFabio = ["Born in the city of the cock, currently, with 22 years old, master student in Computer Engineering at University of Minho and sports lover.", "I am very interested in Business Intelligence, Data Warehouse and Web development and I am always looking to learn new things."]
