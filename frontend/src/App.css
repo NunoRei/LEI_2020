@@ -163,6 +163,6 @@ h1,h2,h3,h4,h5{
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
+  text-align: justify;
   background-color: #f1f1f1;
 }
