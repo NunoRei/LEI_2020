@@ -60,7 +60,7 @@ function Home()
                 <div class="w3-container">
                     <h4 class = 'Utente' id = 'Utente'>Prescription of medications</h4>
                     <div class="w3-justyfi ">
-                    <img src={require('../img/utente-pres.PNG')} alt= "alps" style={{marginBottom: '40px', marginLeft:'20px', paddingLeft: '30px', height: "7.5cm", width: "15cm"}} class = "w3-right"/>
+                    <img src={require('../img/utente-pres.png')} alt= "alps" style={{marginBottom: '40px', marginLeft:'20px', paddingLeft: '30px', height: "7.5cm", width: "15cm"}} class = "w3-right"/>
                     <p>Repeat steps 1 and 2 of "Edit a Patient's Information".</p>
                     <p>Find the drug you want to prescribe using the "Add a Drug to the Prescription" box. Add to prescription using the '+' button.</p>
                     <p>In case of any interaction, this information will be presented in the text box below.</p>
