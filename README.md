@@ -16,7 +16,7 @@ Melhorias:
 - [X] 4) Permitir desativar um utente => estado de "1" para "0" + data da última atualização updated (só apresentam depois os pacientes com estado a "1" para a pesquisa);
 - [x] 5) Nas interações medicamentosas: escolher um ícone para cada grau de severidade e ordenar por grau de severidade na apresentação (as mais graves antes); 
  Falta icon para a severidade N/A
-- [ ] 6) Podem mapear mais algumas interações medicamentosas. Façam uma nova pesquisa a ver se encontram mais algumas novas interações medicamentos comuns para acrescentar;
+- [X] 6) Podem mapear mais algumas interações medicamentosas. Façam uma nova pesquisa a ver se encontram mais algumas novas interações medicamentos comuns para acrescentar;
 - [x] 7) Acho que já está mas não esquecer que, caso houver interações medicamentosas graves (os graus de severidade mais graves), alertar o utilizador e não deixar associar a nova prescrição ao utente. Ele depois pode remover algumas das medicações consoante as interações medicamentosas e voltar a tentar associar a nova prescrição;
-- [ ] 8) Tentar melhorar o visual da aplicação;
-- [ ] 9) (FASE FINAL) Redigir um relatório sintético. Colocar depois no GitHub a versão final do projeto + o relatório.
+- [X] 8) Tentar melhorar o visual da aplicação;
+- [X] 9) (FASE FINAL) Redigir um relatório sintético. Colocar depois no GitHub a versão final do projeto + o relatório.
